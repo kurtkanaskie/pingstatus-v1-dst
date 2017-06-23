@@ -1,0 +1,9 @@
+{
+  "name": "pingstatus",
+  "version": "1.0.0",
+  "devDependencies": {
+    "apickli": "^1.7.4",
+    "cucumber": "^1.0.0",
+    "prettyjson": "^1.0.0"
+  }
+}

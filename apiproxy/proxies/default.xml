@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <FaultRules/>
+            <Name>AM-default-proxy-fault</Name>
+        </Step>
+        <Step>
+            <FaultRules/>
+            <Name>JS-set-time-data</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <FaultRules>
+        <FaultRule name="Missing-or-invalid-clientId">
+            <Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKey") or (fault.name = "InvalidApiKeyForGivenResource")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-missing-or-invalid-clientId</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Ping-response">
+            <Condition>(fault.name = "RaiseFault") and (message.status.code = 200)</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>RF-create-ping-response</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Resource-not-found">
+            <Condition>(fault.name = "RaiseFault") and (message.status.code = 404)</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-resource-not-found</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>KV-Get-Config-Values</Name>
+            </Step>
+            <Step>
+                <Name>VA-header</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <FaultRules/>
+                <Name>JS-set-time-data</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <Flows>
+        <Flow name="ping">
+            <Description>proxy response</Description>
+            <Request>
+                <Step>
+                    <Name>JS-set-time-data</Name>
+                </Step>
+                <Step>
+                    <Name>RF-create-ping-response</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/ping") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="post ping">
+            <Description/>
+            <Request>
+                <Step>
+                    <Name>JS-set-time-data</Name>
+                </Step>
+                <Step>
+                    <Name>RF-create-ping-response</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/ping") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="statuses">
+            <Description>back end status</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>JS-set-time-data</Name>
+                </Step>
+                <Step>
+                    <Name>AM-create-status-response</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/statuses") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="catch all">
+            <Description>Catch any unmatched calls and raise fault</Description>
+            <Request>
+                <Step>
+                    <Name>RF-path-suffix-not-found</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/**")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/pingstatus/v1</BasePath>
+        <Properties/>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <!--
+    <RouteRule name="ping">
+        <Condition>(proxy.pathsuffix MatchesPath "/ping")</Condition>
+    </RouteRule>
+    -->
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

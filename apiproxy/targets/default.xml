@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <Description/>
+    <FaultRules>
+        <FaultRule name="service-unavailable">
+            <Condition>(message.status.code &gt;= 500)</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-Set-Service-Unavailable-Error-Variables</Name>
+            </Step>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <Flows>
+        <Flow name="statuses">
+            <Request>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/statuses") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="pingstatus"/>
+        </LoadBalancer>
+        <Path>/kurtkanaskie/sandbox</Path>
+    </HTTPTargetConnection>
+</TargetEndpoint>

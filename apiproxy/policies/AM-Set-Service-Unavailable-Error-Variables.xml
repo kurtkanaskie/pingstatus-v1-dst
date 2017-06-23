@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-Set-Service-Unavailable-Error-Variables">
+    <DisplayName>AM - Set Service Unavailable Error Variables</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+            "fault": {
+            "faultstring": "Simulated The Service is temporarily unavailable",
+            "detail": {
+            "errorcode": "com.apigee.transport.errors.HttpAdaptorException"
+            }
+            }
+            }
+        </Payload>
+    </Set>
+    <AssignVariable>
+        <Name>error.code</Name>
+        <Value>100000</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error.message</Name>
+        <Value>Service is currently not available</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error.info</Name>
+        <Value>https://developer.mycompany.com/docs</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error.detail</Name>
+        <Value>Service is temporarily unavailable.</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error.status</Name>
+        <Value>503</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>error.reason</Name>
+        <Value>Service Unavailable</Value>
+    </AssignVariable>
+    <Set/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

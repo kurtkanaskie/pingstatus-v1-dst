@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-create-status-response">
+    <DisplayName>AM create status response</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+            {
+                "environment": "@environment.name#",
+                "apiproxy": "@apiproxy.name#",
+                "basepath": "@proxy.basepath#",
+                "suffix": "@proxy.pathsuffix#",
+                "client": "@client.host#",
+                "time": "@system.time#",
+                "proxyLatency": "@total_client_time#",
+                "targetLatency": "@total_target_time#",
+                "latency": "@total_request_time#",
+                "message":"STATUS",
+                "backendMessage":@response.content#
+            }
+    </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-debug">
+    <DisplayName>AM debug</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
+'message.status.code': "@message.status.code#",
+'message.reason.phrase': "@message.reason.phrase#",
+'error.code': "@error.code#",
+'error.message': "@error.message#",
+'error.state': "@error.state#",
+'error.content': "@error.content#",
+'fault.name': "@fault.name#",
+'fault.category': "@fault.category#",
+'current.flow.name': "@current.flow.name#",
+'current.flow.description': "@current.flow.description#",
+'proxy.flow.name': "@proxy.flow.name#",
+'proxy.flow.description': "@proxy.flow.description#",
+'target.flow.name': "@target.flow.name#",
+'target.flow.description': "@target.flow.description#"
+}
+</Payload>
+    </Set>
+    <AssignVariable>
+        <Name>debug.message</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
