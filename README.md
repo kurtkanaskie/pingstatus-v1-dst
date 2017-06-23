@@ -91,6 +91,7 @@ mvn -P test clean install -Duser.name=yourname- -DtestType=@intg
 ```
 
 For other environments (e.g. test, qa, uat, prod) the user.name is left blank, so the build puts the proxy into the final form with the final basepath (e.g. pingstatus-v1, /pingstatus/v1).
+```
 mvn -P test clean install -Duser.name= -DtestType=@intg
 ```
 
