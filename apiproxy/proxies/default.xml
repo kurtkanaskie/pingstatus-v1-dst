@@ -13,13 +13,7 @@
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
     <FaultRules>
-        <FaultRule name="Missing-or-invalid-clientId">
-            <Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKey") or (fault.name = "InvalidApiKeyForGivenResource")</Condition>
-            <Step>
-                <FaultRules/>
-                <Name>AM-missing-or-invalid-clientId</Name>
-            </Step>
-        </FaultRule>
+        <!-- Call RF for ping response again so we don't fall into DefaultFaultRule -->
         <FaultRule name="Ping-response">
             <Condition>(fault.name = "RaiseFault") and (message.status.code = 200)</Condition>
             <Step>
@@ -32,6 +26,13 @@
             <Step>
                 <FaultRules/>
                 <Name>AM-resource-not-found</Name>
+            </Step>
+        </FaultRule>
+        <FaultRule name="Missing-or-invalid-clientId">
+            <Condition>(fault.name = "FailedToResolveAPIKey") or (fault.name = "InvalidApiKey") or (fault.name = "InvalidApiKeyForGivenResource")</Condition>
+            <Step>
+                <FaultRules/>
+                <Name>AM-missing-or-invalid-clientId</Name>
             </Step>
         </FaultRule>
     </FaultRules>

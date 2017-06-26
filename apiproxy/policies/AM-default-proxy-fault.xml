@@ -6,13 +6,13 @@
             <Header name="Content-Type">application/json</Header>
         </Headers>
         <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">{
-	"code": "@error.code#",
-	"message": "@error.message#",
-	"info": "@error.info#"
+	"code": "@flow.error.code#",
+	"message": "@flow.error.message#",
+	"info": "@flow.error.info#"
 }
 </Payload>
-        <StatusCode>{error.status}</StatusCode>
-        <ReasonPhrase>{error.reason}</ReasonPhrase>
+        <StatusCode>{flow.error.status}</StatusCode>
+        <ReasonPhrase>{flow.error.reason}</ReasonPhrase>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
 </AssignMessage>

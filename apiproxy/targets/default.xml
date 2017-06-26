@@ -6,7 +6,7 @@
             <Condition>(message.status.code &gt;= 500)</Condition>
             <Step>
                 <FaultRules/>
-                <Name>AM-Set-Service-Unavailable-Error-Variables</Name>
+                <Name>AM-set-service-unavailable-error-variables</Name>
             </Step>
         </FaultRule>
     </FaultRules>
@@ -20,8 +20,7 @@
     </PostFlow>
     <Flows>
         <Flow name="statuses">
-            <Request>
-            </Request>
+            <Request/>
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/statuses") and (request.verb = "GET")</Condition>
         </Flow>

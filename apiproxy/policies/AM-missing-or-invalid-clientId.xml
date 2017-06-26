@@ -3,23 +3,23 @@
     <DisplayName>AM missing or invalid clientId</DisplayName>
     <Properties/>
     <AssignVariable>
-        <Name>error.code</Name>
+        <Name>flow.error.code</Name>
         <Value>400.01.001</Value>
     </AssignVariable>
     <AssignVariable>
-        <Name>error.message</Name>
+        <Name>flow.error.message</Name>
         <Value>missing or invalid clientId</Value>
     </AssignVariable>
     <AssignVariable>
-        <Name>error.info</Name>
+        <Name>flow.error.info</Name>
         <Value>https://developers.mycompany.com</Value>
     </AssignVariable>
     <AssignVariable>
-        <Name>error.status</Name>
+        <Name>flow.error.status</Name>
         <Value>400</Value>
     </AssignVariable>
     <AssignVariable>
-        <Name>error.reason</Name>
+        <Name>flow.error.reason</Name>
         <Value>Bad Request</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
