@@ -168,6 +168,7 @@ jmeter -n -l output.txt -t test/jmeter/pingstatus.jmx -DtestData=pingstatus_test
 * mvn -P test jshint:lint@jslint
 
 ### Aplicki / Cucumber Standalone Tests
+These will not work since config.json does not have actual default API Keys, they get replaced for every profile
 * cucumberjs test/apickli/features/ping.feature
 * cucumberjs test/apickli/features --tags @health
 * cucumberjs test/apickli/features --tags @intg
