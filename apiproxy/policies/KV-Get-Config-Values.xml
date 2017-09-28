@@ -10,7 +10,7 @@
     </Get>
     <Get assignTo="logging" index="1">
         <Key>
-            <Parameter>logging</Parameter>
+            <Parameter>loggingLevel</Parameter>
         </Key>
     </Get>
     <Scope>environment</Scope>

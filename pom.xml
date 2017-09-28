@@ -1,253 +1,381 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>apigee</groupId>
-    <artifactId>pingstatus-v1</artifactId>
-    <version>1</version>
-    <name>pingstatus-${deployment.suffix}v1</name>
-    <packaging>pom</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>apigee</groupId>
+	<artifactId>pingstatus-v1</artifactId>
+	<version>-</version>
+	<name>pingstatus-${deployment.suffix}v1</name>
+	<packaging>pom</packaging>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <name>Maven Plugin Repository</name>
-            <url>http://repo1.maven.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<properties>
-        <org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
-        <project.root.dir>${basedir}</project.root.dir>
-        <target.root.dir>${basedir}/target</target.root.dir>
-        <deployment.suffix>${user.name}</deployment.suffix>
-    </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+		<project.root.dir>${basedir}</project.root.dir>
+		<target.root.dir>${basedir}/target</target.root.dir>
+		<deployment.suffix>${user.name}</deployment.suffix>
+		<commit></commit>
+		<branch>a local</branch>
+	</properties>
 
-    <!-- This is where you add all the environment specific properties under various profile names -->
-    <!-- For apigee.options, refer to "Advanced Configuration Options" under https://github.com/apigee/apigee-deploy-maven-plugin#pom-xml-sample -->
-    <profiles>
-        <profile>
-            <id>test</id>
-            <properties>
-                <apigee.profile>test</apigee.profile>
-                <apigee.env>test</apigee.env>
-                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-                <apigee.apiversion>v1</apigee.apiversion>
-                <apigee.org>kurtkanaskie</apigee.org>
-                <apigee.domain>kurtkanaskie-test.apigee.net</apigee.domain>
-                <apigee.username>${username}</apigee.username>
-                <apigee.password>${password}</apigee.password>
-                <apigee.options>${options}</apigee.options>
-                <apigee.revision>${revision}</apigee.revision>
-				<apigee.clientId>8PmQGuVUYqRhR55aD825xQfO7CsgPtAD</apigee.clientId>
-                <apigee.clientSecret>qr3hY9AdRQEljtfi</apigee.clientSecret>
-                <apigee.invalidClientId>MBP5ep3O9WfQgC63NtsvwyEtFuyyuxzV</apigee.invalidClientId>
-            </properties>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <apigee.profile>prod</apigee.profile>
-                <apigee.env>prod</apigee.env>
-                <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-                <apigee.apiversion>v1</apigee.apiversion>
-                <apigee.org>kurtkanaskie</apigee.org>
-                <apigee.domain>kurtkanaskie-prod.apigee.net</apigee.domain>
-                <apigee.username>${username}</apigee.username>
-                <apigee.password>${password}</apigee.password>
-                <apigee.options>${options}</apigee.options>
-                <apigee.revision>${revision}</apigee.revision>
-				<apigee.clientId>8PmQGuVUYqRhR55aD825xQfO7CsgPtAD</apigee.clientId>
-                <apigee.clientSecret>qr3hY9AdRQEljtfi</apigee.clientSecret>
-                <apigee.invalidClientId>MBP5ep3O9WfQgC63NtsvwyEtFuyyuxzV</apigee.invalidClientId>
-            </properties>
-        </profile>
-    </profiles>
+	<!-- This is where you add environment specific properties under various profile names 
+		 For apigee.options, refer to "Advanced Configuration Options" under https://github.com/apigee/apigee-deploy-maven-plugin#pom-xml-sample 
+	-->
+	<profiles>
+		<profile>
+			<id>kurt-test</id>
+			<properties>
+				<apigee.profile>test</apigee.profile>
+				<apigee.env>test</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
+				<api.testtag>~@wip,~@mock</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>kurt-prod</id>
+			<properties>
+				<apigee.profile>prod</apigee.profile>
+				<apigee.env>prod</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>kurtkanaskietrainer-trial</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<apigee.options>override</apigee.options>
+				<apigee.override.delay>5</apigee.override.delay>
+				<api.northbound.domain>kurtkanaskietrainer-trial-test.apigee.net</api.northbound.domain>
+				<api.testtag>~@prod</api.testtag>
+			</properties>
+		</profile>
+	
+		<profile>
+			<id>dev</id>
+			<properties>
+				<apigee.profile>dev</apigee.profile>
+				<apigee.env>dev</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<!-- override (default) to add new revision, update to write over the existing revision, fails if doesn't exist-->
+				<!-- <apigee.options>update</apigee.options> -->
+				<api.northbound.domain>caterpillar-nonprod-dev.apigee.net</api.northbound.domain>
+				<api.testtag>~@wip,~@mock</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa</id>
+			<properties>
+				<apigee.profile>qa</apigee.profile>
+				<apigee.env>qa</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>caterpillar-nonprod</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>caterpillar-nonprod-qa.apigee.net</api.northbound.domain>
+				<api.testtag>~@wip</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>stage</id>
+			<properties>
+				<apigee.profile>stage</apigee.profile>
+				<apigee.env>stage</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>caterpillar-nonprod</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>caterpillar-nonprod-stage.apigee.net</api.northbound.domain>
+				<api.testtag>~@wip</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>sandbox</id>
+			<properties>
+				<apigee.profile>sandbox</apigee.profile>
+				<apigee.env>sandbox</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>caterpillar</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>caterpillar-sandbox.apigee.net</api.northbound.domain>
+				<api.testtag>~@wip,~@mock</api.testtag>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<apigee.profile>prod</apigee.profile>
+				<apigee.env>prod</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>caterpillar</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<apigee.options>override</apigee.options>
+				<apigee.override.delay>5</apigee.override.delay>
+				<api.northbound.domain>caterpillar-prod.apigee.net</api.northbound.domain>
+				<api.testtag>~@wip,~@mock</api.testtag>
+			</properties>
+		</profile>
+	</profiles>
 
-    <build>
-        <plugins>
-            <!-- run jslint -->
-            <plugin>
-                <groupId>com.cj.jshintmojo</groupId>
-                <artifactId>jshint-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <executions>
-                    <execution>
-                        <id>jslint</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>lint</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <directories>
-                        <directory>./apiproxy/resources/jsc</directory>
-                    </directories>
-                    <excludes>
-                        <exclude>./apiproxy/resources/jsc/crypto-js.js</exclude>
-                    </excludes>
-                    <reporter>jslint</reporter>
-                </configuration>
-            </plugin>
+	<build>
 
-            <!-- copy the full apiproxy folder to target folder -->
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <!-- REPO uses: <phase>prepare-package</phase> -->
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <overwrite>true</overwrite>
-                            <resources>
-                                <resource>
-                                    <!--source -->
-                                    <directory>${project.root.dir}</directory>
-                                    <filtering>true</filtering>
-                                    <includes>
-                                        <include>apiproxy/**</include>
-                                        <include>test/**</include>
-                                        <include>oas/*</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                            <!--target -->
-                            <outputDirectory>${target.root.dir}</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>io.apigee.build-tools.enterprise4g</groupId>
+					<artifactId>apigee-edge-maven-plugin</artifactId>
+					<version>1.0.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 
-            <!-- Replacer supports features and downstream environment branches -->
-            <plugin>
-                <groupId>com.google.code.maven-replacer-plugin</groupId>
-                <artifactId>replacer</artifactId>
-                <version>1.5.2</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <basedir>${target.root.dir}</basedir>
-                    <includes>
-                        <include>apiproxy/pingstatus-v1.xml</include>
-                        <include>apiproxy/proxies/default.xml</include>
-                        <include>test/apickli/config/config.json</include>
-                        <include>oas/*</include>
-                    </includes>
-                    <replacements>
-                        <replacement>
-                            <token>pingstatus-v1</token>
-                            <value>pingstatus-${deployment.suffix}v1</value>
-                        </replacement>
-                        <replacement>
-                            <token>pingstatus/v1</token>
-                            <value>pingstatus/${deployment.suffix}v1</value>
-                        </replacement>
-                        <replacement>
-                            <token>test</token>
-                            <value>${apigee.env}</value>
-                        </replacement>
+		<plugins>
+
+			<!-- run jslint -->
+			<plugin>
+				<groupId>com.cj.jshintmojo</groupId>
+				<artifactId>jshint-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<executions>
+					<execution>
+						<id>jslint</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>lint</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<directories>
+						<directory>apiproxy/resources/jsc</directory>
+					</directories>
+					<reporter>jslint</reporter>
+				</configuration>
+			</plugin>
+
+			<!-- copy the full apiproxy folder to target folder -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<!--source -->
+									<directory>${project.root.dir}</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>apiproxy/**</include>
+										<include>test/integration/**</include>
+									</includes>
+								</resource>
+							</resources>
+							<!--target -->
+							<outputDirectory>${target.root.dir}</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.2</version>
+				<executions>
+					<execution>
+						<id>replace</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<basedir>${target.root.dir}</basedir>
+					<includes>
+						<include>apiproxy/proxies/default.xml</include>
+						<include>apiproxy/proxies/loggly.xml</include>
+						<include>test/integration/test-config.json</include>
+						<include>apiproxy/pingstatus-v1.xml</include>
+					</includes>
+					<replacements>
 						<replacement>
-                            <token>REPLACE-CLIENTID</token>
-                            <value>${apigee.clientId}</value>
-                        </replacement>
-                        <replacement>
-                            <token>REPLACE-CLIENTSECRET</token>
-                            <value>${apigee.clientSecret}</value>
-                        </replacement>
-                        <replacement>
-                            <token>REPLACE-INVALID-CLIENTID</token>
-                            <value>${apigee.invalidClientId}</value>
-                        </replacement>
-                        
-                    </replacements>
-                </configuration>
-            </plugin>
+							<token>/pingstatus/v1</token>
+							<value>/pingstatus/${deployment.suffix}v1</value>
+						</replacement>
+						<replacement>
+							<token>caterpillar-nonprod-dev.apigee.net</token>
+							<value>${api.northbound.domain}</value>
+						</replacement>
+						<replacement>
+							<token>@description</token>
+							<value>commit ${commit} from ${branch} branch by ${user.name}</value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
 
+			<plugin>
+				<groupId>io.apigee.build-tools.enterprise4g</groupId>
+				<artifactId>apigee-edge-maven-plugin</artifactId>
+				<version>1.1.5</version>
+				<executions>
+					<execution>
+						<id>configure-bundle-step</id>
+						<phase>package</phase>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+					<!--deploy bundle -->
+					<execution>
+						<id>deploy-bundle-step</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Configuration -->
             <plugin>
-                <groupId>io.apigee.build-tools.enterprise4g</groupId>
-                <artifactId>apigee-edge-maven-plugin</artifactId>
-				<version>1.0.2</version>
+                <groupId>com.apigee.edge.config</groupId>
+                <artifactId>apigee-config-maven-plugin</artifactId>
+                <version>1.2</version>
                 <executions>
                     <execution>
-                        <id>configure-bundle-step</id>
-                        <phase>package</phase>
+                        <id>create-config-cache</id>
+                        <phase>verify</phase>                        
                         <goals>
-                            <goal>configure</goal>
+                            <goal>caches</goal>
                         </goals>
                     </execution>
-                    <!--deploy bundle -->
                     <execution>
-                        <id>deploy-bundle-step</id>
-                        <phase>install</phase>
+                        <id>create-config-targetserver</id>
+                        <phase>verify</phase>                        
                         <goals>
-                            <goal>deploy</goal>
+                            <goal>targetservers</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-config-kvm</id>
+                        <phase>verify</phase>                        
+                        <goals>
+                            <goal>keyvaluemaps</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-config-apiproduct</id>
+                        <phase>install</phase>                        
+                        <goals>
+                            <goal>apiproducts</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-config-developer</id>
+                        <phase>install</phase>                        
+                        <goals>
+                            <goal>developers</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-config-app</id>
+                        <phase>install</phase>                        
+                        <goals>
+                            <goal>apps</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>   
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.3.2</version>
-                <executions>
-                    <!-- npm install -->
-                    <execution>
-                        <id>npm-install</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>npm</executable>
-                            <commandlineArgs>
-                                install
-                            </commandlineArgs>
-                        </configuration>
-                    </execution>
-                    <!-- run integration tests -->
-                    <execution>
-                        <id>integration</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <environmentVariables>
-                                <NODE_ENV>
-                                    ${apigee.env}
-                                </NODE_ENV>
-                            </environmentVariables>
-                            <executable>./node_modules/cucumber/bin/cucumber.js</executable>
-                            <commandlineArgs>
-                                target/test/apickli/features --tags ${testType}
-                            </commandlineArgs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<executions>
+					<!-- npm install -->
+					<execution>
+						<id>npm-install</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>npm</executable>
+							<commandlineArgs>
+								install
+							</commandlineArgs>
+						</configuration>
+					</execution>
+					<!-- run unit tests -->
+					<execution>
+						<id>unit</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<!-- For windows -->
+							<executable>node</executable>
+							<commandlineArgs>
+								./node_modules/mocha/bin/mocha test/unit
+							</commandlineArgs>
+						</configuration>
+					</execution>
+					<!-- run integration tests -->
+					<execution>
+						<id>integration</id>
+						<phase>install</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>node</executable>
+							<commandlineArgs>
+								./node_modules/cucumber/bin/cucumber.js target/test/integration/features --tags ${api.testtag}
+							</commandlineArgs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-            <!-- cleaning dirs -->
-<!--
+			<!-- cleaning dirs -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.5</version>
@@ -260,6 +388,7 @@
 							<goal>clean</goal>
 						</goals>
 					</execution>
+					<!-- leave the target dir for debugging, post mortem -->
 					<execution>
 						<id>auto-clean-install</id>
 						<phase>install</phase>
@@ -267,10 +396,10 @@
 							<goal>clean</goal>
 						</goals>
 					</execution>
+					<!-- -->
 				</executions>
 			</plugin>
--->
-        </plugins>
-    </build>
+		</plugins>
+	</build>
 
 </project>

@@ -2,7 +2,7 @@
 'use strict';
 
 var factory = require('./factory.js');
-var config = require('../../config/config.json');
+var config = require('../../test-config.json');
 
 var apiproxy = config.pingstatus.apiproxy;
 var basepath = config.pingstatus.basepath;

@@ -1,0 +1,163 @@
+{
+    "version": "1.0",
+    "apiConfig": {
+    },
+    "envConfig": {
+        "dev": {
+            "targetServers": [
+                {
+                    "name": "pingstatus",
+                    "host": "apibaas-trial.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "false",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [{
+                "name": "pingstatus",
+                "entry": [{
+                        "name": "loggingUrl",
+                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
+                    },
+                    {
+                        "name": "loggingLevel",
+                        "value": "INFO"
+                    }
+                ]
+            }]
+        },
+        "qa": {
+            "targetServers": [
+                {
+                    "name": "pingstatus",
+                    "host": "apibaas-trial.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "false",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [{
+                "name": "pingstatus",
+                "entry": [{
+                        "name": "loggingUrl",
+                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
+                    },
+                    {
+                        "name": "loggingLevel",
+                        "value": "INFO"
+                    }
+                ]
+            }]
+        },
+        "stage": {
+            "targetServers": [
+                {
+                    "name": "pingstatus",
+                    "host": "apibaas-trial.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "false",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [{
+                "name": "pingstatus",
+                "entry": [{
+                        "name": "loggingUrl",
+                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
+                    },
+                    {
+                        "name": "loggingLevel",
+                        "value": "INFO"
+                    }
+                ]
+            }]
+        },
+        "sandbox": {
+            "targetServers": [
+                {
+                    "name": "pingstatus",
+                    "host": "apibaas-trial.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "false",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [{
+                "name": "pingstatus",
+                "entry": [{
+                        "name": "loggingUrl",
+                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
+                    },
+                    {
+                        "name": "loggingLevel",
+                        "value": "INFO"
+                    }
+                ]
+            }]
+        },
+        "prod": {
+            "targetServers": [
+                {
+                    "name": "pingstatus",
+                    "host": "apibaas-trial.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "false",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [{
+                "name": "pingstatus",
+                "entry": [{
+                        "name": "loggingUrl",
+                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
+                    },
+                    {
+                        "name": "loggingLevel",
+                        "value": "INFO"
+                    }
+                ]
+            }]
+        }
+    },
+    "orgConfig": {
+        "apiProducts": [],
+        "developers": [],
+        "developerApps": {
+        }
+    }
+}

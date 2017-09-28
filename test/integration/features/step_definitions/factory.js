@@ -1,5 +1,5 @@
 var apickli = require('apickli');
-var config = require('../../config/config.json');
+var config = require('../../test-config.json');
 
 var defaultBasePath = config.pingstatus.basepath;
 var defaultDomain = config.pingstatus.domain;

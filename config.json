@@ -7,6 +7,30 @@
 			"targets": []
 		},
 		{
+			"name": "dev",
+			"policies": [],
+			"proxies": [],
+			"targets": []
+		},
+		{
+			"name": "qa",
+			"policies": [],
+			"proxies": [],
+			"targets": []
+		},
+		{
+			"name": "stage",
+			"policies": [],
+			"proxies": [],
+			"targets": []
+		},
+		{
+			"name": "sandbox",
+			"policies": [],
+			"proxies": [],
+			"targets": []
+		},
+		{
 			"name": "prod",
 			"policies": [],
 			"proxies": [],

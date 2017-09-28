@@ -179,3 +179,6 @@ NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherk
 #### Diffing apiproxy directories
 * diff -q --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
 * diff --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
+
+
+mvn install -Pprod -Ddeployment.suffix= -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
