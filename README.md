@@ -123,18 +123,19 @@ Or using this:
 
 ## Maven
 ### Jenkins Commands
-The Jenkins build server runs Maven with this command for each of the feature branches. Note the use of `-Duser.name=yourname-`. That is so the build and deploy to Apigee creates a separate proxy with a separate basepath to allow independent feature development. Your proxy will show up with a name (e.g. pingstatus-yourname-v1) and basepath (e.g. /pingstatus/yourname-v1).
-
-NOTE: The use of user.name option is important, if omitted, Maven will use your username from the system you are running on. If set to nothing (-Duser.name=) then you will be using the "standard" proxy.
+The Jenkins build server runs Maven with this command for each of the feature branches. 
 
 ```
-mvn -P test clean install -Duser.name=yourname- -DtestType=@intg
+mvn -Pmy-test clean install -Dapi.testtag=@intg,@health
 ```
 
-For other environments (e.g. test, qa, uat, prod) the user.name is left blank, so the build puts the proxy into the final form with the final basepath (e.g. pingstatus-v1, /pingstatus/v1).
+Note the lack of `-deployment.suffix=`. That is so the build and deploy to Apigee creates a separate proxy with a separate basepath to allow independent feature development. Your proxy will show up with a name (e.g. pingstatus-${user.name}v1) and basepath (e.g. /pingstatus/${user.name}v1).
+
+For other environments (e.g. test, prod) the `-deployment.suffix=` is set blank, so the build puts the proxy into the final form with the final basepath (e.g. pingstatus-v1, /pingstatus/v1).
 ```
-mvn -P test clean install -Duser.name= -DtestType=@intg
+mvn -P test clean install  -Ddeployment.suffix= -Dapi.testtag=@intg,@health
 ```
+
 
 NOTE: If you get a strange error from Maven about replacement `named capturing group is missing trailing '}'` there is something wrong with your options or replacements settings.
 
@@ -158,18 +159,18 @@ Often it is necessary to interate over tests for a feature development. Since Ap
 Here are the steps:
 1 Install your feature proxy to Apigee if you are creating a new feature, otherwise just get a copy of the exising proxy you are building tests for.
 2 Run Maven to copy resources and "replace" things. 
-    * `mvn -P test clean process-resources  -Duser.name=yourname- `
-3 `cd target/apickli/features` directory and run tests by tag or by feature file
-    * cucumberjs test/apickli/features --tags @intg
-    * cucumberjs errorHandling.feature
+    * `mvn -P test clean process-resources`
+3 Run tests by tag or by feature file
+    * cucumberjs target/test/apickli/features --tags @intg
+    * cucumberjs target/test/apickli/features/errorHandling.feature
 
 Alternatively, you can run the tests via Maven
-* `mvn -P test process-resources -Duser.name=yourname- exec:exec@integration -DtestType=@get-ping`
+* `mvn -P test process-resources exec:exec@integration -api.testtag=@get-ping`
 
 NOTE: the initial output from cucumber shows the proxy and basepath being used
 ```
     [yourname]$ cucumberjs test/apickli/features --tags @invalid-clientid-for-resource
-==> pingstatus api: [yourorgname-test.apigee.net, /pingstatus/yourname-v1]
+==> pingstatus api: [yourorgname-test.apigee.net, /pingstatus/yournamev1]
     @intg
     Feature: Error handling
 
@@ -199,20 +200,16 @@ To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `f
     @get-statuses
 ```
 ## Other Miscellaneous Commands
-#### Install and Run Tests by tag as default username (branch pingstatus-kurtv1)
-* mvn -P test install -DtestType=@health,@intg
-
-#### Install and Run Tests by tag as specified username (branch pingstatus-kurt-v1)
-* mvn -P test clean install -DtestType=@health,@intg -Duser.name=yourname-
+#### Install and Run Tests by tag as default username
+* mvn -P test install -Dapi.testtag=@health,@intg
 
 #### Install and Run Tests by tag as no username (master)
-* mvn -P test clean install -DtestType=@health,@intg -Duser.name=
+* mvn -P test clean install -Dapi.testtag=@health,@intg -Ddeployment.suffix=
 
 #### Process-resources and Run Tests by tag
-* mvn -P test process-resources -Duser.name=yourname-
-* mvn -P test exec:exec@integration -DtestType=@health
+* mvn -P test process-resources exec:exec@integration -Dapi.testtag=@health
 
-#### install and sync config
+#### Install and sync configuration items
 mvn install -Pprod -Ddeployment.suffix= -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
 
 
@@ -236,5 +233,27 @@ NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherk
 #### Diffing apiproxy directories
 * diff -q --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
 * diff --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
+
+### Maven $HOME/.m2/settings.xml 
+```
+<profile>
+            <id>test</id>
+            <properties>
+                <env.APIGEE_ORG>yourorgname</env.APIGEE_ORG>
+                <env.APIGEE_USERNAME>yourusername</env.APIGEE_USERNAME>
+                <env.APIGEE_PASSWORD>yourpassword</env.APIGEE_PASSWORD>
+                <env.APIGEE_NORTHBOUND_DOMAIN>yourorgname-test.apigee.net</env.APIGEE_NORTHBOUND_DOMAIN>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env.APIGEE_ORG>yourorgname</env.APIGEE_ORG>
+                <env.APIGEE_USERNAME>yourusername</env.APIGEE_USERNAME>
+                <env.APIGEE_PASSWORD>yourpassword</env.APIGEE_PASSWORD>
+                <env.APIGEE_NORTHBOUND_DOMAIN>yourorgname-prod.apigee.net</env.APIGEE_NORTHBOUND_DOMAIN>
+            </properties>
+        </profile>
+```
 
 

@@ -17,4 +17,9 @@ Feature: Error handling
         Then response code should be 404
         And response header Content-Type should be application/json
         And response body path $.message should be Resource not found at /foo/bar
+
+    @foo
+    Scenario: GET /foo/bar request not found
+        When I GET /foo/bar
+        Then I should get a 404 error with message "Resource not found at /foo" and code "404.01.001"
         
