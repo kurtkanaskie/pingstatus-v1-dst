@@ -15,8 +15,6 @@ module.exports = function() {
         this.apickli = factory.getNewApickliInstance();
         // this.apickli.storeValueInScenarioScope("clientId", "Uvz7ahhlaer3zhOp25BGmAzSQVEbsJNw");
         // this.apickli.storeValueInScenarioScope("clientSecret", "LOoE2q6enoqlTuBT");
-		// this.apickli.storeValueInScenarioScope("merchantId", "299659842982");
-        // this.apickli.storeValueInScenarioScope("merchantKey", "N3H5G9X7Q3Q5");
         this.apickli.storeValueInScenarioScope("apiproxy", apiproxy);
         this.apickli.storeValueInScenarioScope("basepath", basepath);
         this.apickli.storeValueInScenarioScope("clientId", clientId);

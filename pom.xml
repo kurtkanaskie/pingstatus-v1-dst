@@ -69,80 +69,6 @@
 			</properties>
 		</profile>
 	
-		<profile>
-			<id>dev</id>
-			<properties>
-				<apigee.profile>dev</apigee.profile>
-				<apigee.env>dev</apigee.env>
-				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>${env.APIGEE_ORG}</apigee.org>
-				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
-				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<!-- override (default) to add new revision, update to write over the existing revision, fails if doesn't exist-->
-				<!-- <apigee.options>update</apigee.options> -->
-				<api.northbound.domain>caterpillar-nonprod-dev.apigee.net</api.northbound.domain>
-				<api.testtag>~@wip,~@mock</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>qa</id>
-			<properties>
-				<apigee.profile>qa</apigee.profile>
-				<apigee.env>qa</apigee.env>
-				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>caterpillar-nonprod</apigee.org>
-				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
-				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<api.northbound.domain>caterpillar-nonprod-qa.apigee.net</api.northbound.domain>
-				<api.testtag>~@wip</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>stage</id>
-			<properties>
-				<apigee.profile>stage</apigee.profile>
-				<apigee.env>stage</apigee.env>
-				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>caterpillar-nonprod</apigee.org>
-				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
-				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<api.northbound.domain>caterpillar-nonprod-stage.apigee.net</api.northbound.domain>
-				<api.testtag>~@wip</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>sandbox</id>
-			<properties>
-				<apigee.profile>sandbox</apigee.profile>
-				<apigee.env>sandbox</apigee.env>
-				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>caterpillar</apigee.org>
-				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
-				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<api.northbound.domain>caterpillar-sandbox.apigee.net</api.northbound.domain>
-				<api.testtag>~@wip,~@mock</api.testtag>
-			</properties>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<apigee.profile>prod</apigee.profile>
-				<apigee.env>prod</apigee.env>
-				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>caterpillar</apigee.org>
-				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
-				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<apigee.options>override</apigee.options>
-				<apigee.override.delay>5</apigee.override.delay>
-				<api.northbound.domain>caterpillar-prod.apigee.net</api.northbound.domain>
-				<api.testtag>~@wip,~@mock</api.testtag>
-			</properties>
-		</profile>
 	</profiles>
 
 	<build>
@@ -237,6 +163,11 @@
 						<replacement>
 							<token>/pingstatus/v1</token>
 							<value>/pingstatus/${deployment.suffix}v1</value>
+						</replacement>
+						<!-- for the ping and status response tests -->
+						<replacement>
+							<token>pingstatus-v1</token>
+							<value>pingstatus-${deployment.suffix}v1</value>
 						</replacement>
 						<replacement>
 							<token>caterpillar-nonprod-dev.apigee.net</token>

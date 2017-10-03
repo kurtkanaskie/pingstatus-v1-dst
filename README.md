@@ -1,4 +1,4 @@
-# Ping and Status
+G# Ping and Status
 
 ## Overview
 Each proxy source code module is self contained with the actual Apigee Edge proxy, config files for Edge Management API calls (e.g. KVMs, target servers), swagger spec and tests.
@@ -67,21 +67,62 @@ Here is the tree structure, with a little pruning for brevity:
         └── pingstatus_test.csv
 ```
 
-#### Tests
-To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `find . -name *.feature -exec grep @ {} \;`
-```
-@intg
-    @invalidclientid
-    @invalid-clientid-for-resource
-    @foo
-    @foobar
-@health
-    @get-ping
-    @get-statuses
-```
+## Git Commands
 
-### Maven
-#### Jenkins Commands
+### Intitial
+* git checkout -b prod
+* git push origin prod
+* git checkout master
+
+### Feature
+* git checkout -b feature/jira1 --- (MAKE changes for feature/jira1)
+
+#### Test locally
+Set your ~/.m2/settings.xml
+##### Initial build and deploy to currencty-"yourusername"v1
+* mvn -X install -Ptest -Dcommit=local -Dbranch=feature/jira1 
+##### Run unit tests and integration tests
+* mvn process-resources exec:exec@unit -Ptest
+* mvn process-resources exec:exec@integration -Ptest
+##### To run integration tests in other environments
+* mvn process-resources exec:exec@integration -Ptest -Ddeployment.suffix=
+* mvn process-resources exec:exec@integration -Pprod -Ddeployment.suffix=
+
+Once you're happy with the "new" tests locally and verify the feature "doesn't work" in test and prod, then move on to building via Jenkins.
+
+#### Test via Jenkins
+* git commit -am  "Added changes for feature1"
+* git push origin feature/jira1
+
+If the build succeeds you're ready to move into the master branch.
+
+#### Merge to Master
+##### Pull Request
+* Go to repo and create pull request from feature/jira1 to master
+* Comment on pull request
+* Do the merge pull request "Create a merge commit" or use command line
+
+##### Via command line
+* git checkout master
+* git merge --no-ff feature/jira1
+* git push
+
+Clean up feature branch
+* git branch -d feature/jira1
+* git push origin --delete feature/jira1
+
+Or using this:
+* git push origin :feature/jira1
+
+#### Update local Master
+* git checkout master
+* git pull
+
+### Merge to Environments qa, stage, sandbox, prod
+
+
+## Maven
+### Jenkins Commands
 The Jenkins build server runs Maven with this command for each of the feature branches. Note the use of `-Duser.name=yourname-`. That is so the build and deploy to Apigee creates a separate proxy with a separate basepath to allow independent feature development. Your proxy will show up with a name (e.g. pingstatus-yourname-v1) and basepath (e.g. /pingstatus/yourname-v1).
 
 NOTE: The use of user.name option is important, if omitted, Maven will use your username from the system you are running on. If set to nothing (-Duser.name=) then you will be using the "standard" proxy.
@@ -145,6 +186,18 @@ NOTE: the initial output from cucumber shows the proxy and basepath being used
         And response body path $.message should be missing or invalid clientId
 ```
 
+#### Tests
+To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `find . -name *.feature -exec grep @ {} \;`
+```
+@intg
+    @invalidclientid
+    @invalid-clientid-for-resource
+    @foo
+    @foobar
+@health
+    @get-ping
+    @get-statuses
+```
 ## Other Miscellaneous Commands
 #### Install and Run Tests by tag as default username (branch pingstatus-kurtv1)
 * mvn -P test install -DtestType=@health,@intg
@@ -158,6 +211,10 @@ NOTE: the initial output from cucumber shows the proxy and basepath being used
 #### Process-resources and Run Tests by tag
 * mvn -P test process-resources -Duser.name=yourname-
 * mvn -P test exec:exec@integration -DtestType=@health
+
+#### install and sync config
+mvn install -Pprod -Ddeployment.suffix= -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
+
 
 ### JMeter
 jmeter -n -l output.txt -t test/jmeter/pingstatus.jmx -DtestData=pingstatus_test.csv -DthreadNum=1 -DrampUpPeriodSecs=1 -DloopCount=-1 -Drecycle=false
@@ -181,4 +238,3 @@ NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherk
 * diff --suppress-common-lines -r --side-by-side apiproxy-prev apiproxy -W 240
 
 
-mvn install -Pprod -Ddeployment.suffix= -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
