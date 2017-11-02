@@ -20,7 +20,7 @@
     </AssignVariable>
     <AssignVariable>
         <Name>flow.error.reason</Name>
-        <Value>Bad Request</Value>
+        <Value>Not Found</Value>
     </AssignVariable>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignTo createNew="false" transport="http" type="request"/>

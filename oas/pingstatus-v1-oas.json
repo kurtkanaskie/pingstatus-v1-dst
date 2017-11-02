@@ -1,18 +1,18 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Png St",
+        "description": "Ping Status",
         "version": "12.0.0",
-        "title": "ping-status-v1",
+        "title": "pingstatus-v1",
         "contact": {
             "email": "kurtkanaskie@google.com"
         }
     },
-    "host": "sage-dev.apigee.net",
+    "host": "kurtkanaskietrainer-trial-test.apigee.net",
     "schemes": [
         "https"
     ],
-    "basePath": "/helloworld/v1",
+    "basePath": "/pingstatus/v1",
     "parameters" : { },
     "paths": {
         "/ping": {
