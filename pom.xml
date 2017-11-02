@@ -53,17 +53,29 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>test-training</id>
+			<properties>
+				<apigee.profile>test</apigee.profile>
+				<apigee.env>test</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
+				<api.testtag>~@intg,~@health,~@wip,~@mock</api.testtag>
+			</properties>
+		</profile>
+		<profile>
 			<id>prod</id>
 			<properties>
 				<apigee.profile>prod</apigee.profile>
 				<apigee.env>prod</apigee.env>
 				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>kurtkanaskietrainer-trial</apigee.org>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
 				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
 				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
-				<apigee.options>override</apigee.options>
-				<apigee.override.delay>5</apigee.override.delay>
 				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
 				<api.testtag>~@health</api.testtag>
 			</properties>
@@ -100,6 +112,7 @@
 					</execution>
 				</executions>
 				<configuration>
+					<options>curly,eqeqeq,forin,latedef,undef,noempty,nonew,unused</options>
 					<directories>
 						<directory>apiproxy/resources/jsc</directory>
 					</directories>
@@ -128,6 +141,7 @@
 									<includes>
 										<include>apiproxy/**</include>
 										<include>test/integration/**</include>
+										<include>test/performance/**</include>
 									</includes>
 								</resource>
 							</resources>
@@ -155,9 +169,9 @@
 					<basedir>${target.root.dir}</basedir>
 					<includes>
 						<include>apiproxy/proxies/default.xml</include>
-						<include>apiproxy/proxies/loggly.xml</include>
 						<include>test/integration/test-config.json</include>
 						<include>apiproxy/pingstatus-v1.xml</include>
+						<include>test/performance/testdata.csv</include>
 					</includes>
 					<replacements>
 						<replacement>
@@ -170,7 +184,7 @@
 							<value>pingstatus-${deployment.suffix}v1</value>
 						</replacement>
 						<replacement>
-							<token>caterpillar-nonprod-dev.apigee.net</token>
+							<token>kurtkanaskie-test.apigee.net</token>
 							<value>${api.northbound.domain}</value>
 						</replacement>
 						<replacement>
@@ -306,7 +320,58 @@
 				</executions>
 			</plugin>
 
-			<!-- cleaning dirs -->
+			<!-- run performance tests -->
+			<plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>${skipTests}</skipTests>
+                            <ignoreResultFailures>true</ignoreResultFailures>
+                            <suppressJMeterOutput>false</suppressJMeterOutput>
+                            <propertiesUser>
+                                <testData>testdata.csv</testData>
+                                <threadNum>10</threadNum>
+                                <rampUpPeriodSecs>2</rampUpPeriodSecs>
+                                <loopCount>10</loopCount>
+                            </propertiesUser>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <testFilesDirectory>target/test/performance</testFilesDirectory>
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                    <resultsDirectory>${project.root.dir}/results/performance</resultsDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-analysis-maven-plugin</artifactId>
+                <version>1.0.6</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-analysis</id>
+						<phase>install</phase>
+                        <goals>
+                            <goal>analyze</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>${project.root.dir}/results/performance/*</source>
+					<targetDirectory>${project.root.dir}/results/performance/reports</targetDirectory>
+                </configuration>
+            </plugin>
+
+            <!-- cleaning dirs -->
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.5</version>

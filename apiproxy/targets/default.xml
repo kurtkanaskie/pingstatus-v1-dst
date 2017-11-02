@@ -19,16 +19,16 @@
         <Response/>
     </PostFlow>
     <Flows>
-        <Flow name="statuses">
+        <Flow name="status">
             <Request/>
             <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/statuses") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
         </Flow>
     </Flows>
     <HTTPTargetConnection>
         <LoadBalancer>
-            <Server name="pingstatus"/>
+            <Server name="pingstatus-v1"/>
         </LoadBalancer>
-        <Path>/kurtkanaskie/sandbox</Path>
+        <Path>{flow.target.basepath}</Path>
     </HTTPTargetConnection>
 </TargetEndpoint>

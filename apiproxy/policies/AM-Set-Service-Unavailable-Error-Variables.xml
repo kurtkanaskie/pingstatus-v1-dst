@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-service-unavailable-error-variables">
-    <DisplayName>AM set service unavailable error variables</DisplayName>
+    <DisplayName>AM-set-service-unavailable-error-variables</DisplayName>
     <Properties/>
     <Set>
         <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">

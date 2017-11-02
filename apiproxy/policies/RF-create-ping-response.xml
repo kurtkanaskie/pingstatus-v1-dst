@@ -5,15 +5,15 @@
     <FaultResponse>
         <Set>
             <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
-            {
-                "environment": "@environment.name#",
-                "apiproxy": "@apiproxy.name#",
-                "client": "@client.host#",
-                "time": "@system.time#",
-                "latency": "@total_request_time#",
-                "message":"PONG"
-            }
-            </Payload>
+{
+    "environment": "@environment.name#",
+    "apiproxy": "@apiproxy.name#",
+    "client": "@client.host#",
+    "time": "@system.time#",
+    "latency": "@total_request_time#",
+    "message":"PONG"
+}
+</Payload>
             <StatusCode>200</StatusCode>
         </Set>
     </FaultResponse>

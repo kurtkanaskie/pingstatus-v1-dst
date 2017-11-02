@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KV-Get-Config-Values" mapIdentifier="pingstatus">
-    <DisplayName>KV - Get Config Values</DisplayName>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="KV-config-values" mapIdentifier="pingstatus-v1">
+    <DisplayName>KV-config-values</DisplayName>
     <Properties/>
     <ExpiryTimeInSecs>60</ExpiryTimeInSecs>
+    <Get assignTo="flow.target.basepath" index="1">
+        <Key>
+            <Parameter>target.basepath</Parameter>
+        </Key>
+    </Get>
     <Get assignTo="loggingUrl" index="1">
         <Key>
             <Parameter>loggingUrl</Parameter>

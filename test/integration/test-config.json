@@ -1,6 +1,6 @@
 {
     "pingstatus": {
-        "domain": "caterpillar-nonprod-dev.apigee.net",
+        "domain": "kurtkanaskie-test.apigee.net",
         "basepath": "/pingstatus/v1",
         "apiproxy": "pingstatus-v1",
 		"clientId": "REPLACE-CLIENTID",

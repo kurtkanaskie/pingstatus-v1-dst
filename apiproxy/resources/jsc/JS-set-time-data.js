@@ -1,3 +1,4 @@
+/* globals context */
 var request_start_time = context.getVariable('client.received.start.timestamp');
 var target_start_time  = context.getVariable('target.sent.start.timestamp');
 var target_end_time    = context.getVariable('target.received.end.timestamp');

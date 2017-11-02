@@ -39,7 +39,7 @@
     <PreFlow name="PreFlow">
         <Request>
             <Step>
-                <Name>KV-Get-Config-Values</Name>
+                <Name>KV-config-values</Name>
             </Step>
             <Step>
                 <Name>VA-header</Name>
@@ -70,20 +70,7 @@
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/ping") and (request.verb = "GET")</Condition>
         </Flow>
-        <Flow name="post ping">
-            <Description/>
-            <Request>
-                <Step>
-                    <Name>JS-set-time-data</Name>
-                </Step>
-                <Step>
-                    <Name>RF-create-ping-response</Name>
-                </Step>
-            </Request>
-            <Response/>
-            <Condition>(proxy.pathsuffix MatchesPath "/ping") and (request.verb = "POST")</Condition>
-        </Flow>
-        <Flow name="statuses">
+        <Flow name="status">
             <Description>back end status</Description>
             <Request/>
             <Response>
@@ -94,7 +81,7 @@
                     <Name>AM-create-status-response</Name>
                 </Step>
             </Response>
-            <Condition>(proxy.pathsuffix MatchesPath "/statuses") and (request.verb = "GET")</Condition>
+            <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
         </Flow>
         <Flow name="catch all">
             <Description>Catch any unmatched calls and raise fault</Description>

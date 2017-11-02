@@ -63,8 +63,8 @@ Here is the tree structure, with a little pruning for brevity:
     │       └── support
     │           └── env.js
     └── jmeter
-        ├── pingstatus.jmx
-        └── pingstatus_test.csv
+        ├── test.jmx
+        └── testdata.csv
 ```
 
 ## Git Commands
@@ -212,9 +212,9 @@ To see what "tags" are in the tests for cucumberjs run `grep @ *.features` or `f
 #### Install and sync configuration items
 mvn install -Pprod -Ddeployment.suffix= -Dapigee.config.options=sync -Dcommit=local -Dbranch=master
 
-
 ### JMeter
-jmeter -n -l output.txt -t test/jmeter/pingstatus.jmx -DtestData=pingstatus_test.csv -DthreadNum=1 -DrampUpPeriodSecs=1 -DloopCount=-1 -Drecycle=false
+To prevent jmeter from running use -DskipTests=true
+jmeter -n -j target/test/performance/jmeter.log -l target/test/performance/output.txt -t target/test/performance/test.jmx -DtestData=testdata.csv -DthreadNum=10 -DrampUpPeriodSecs=1 -DloopCount=4 -Drecycle=true
 
 ### JSLint
 * jslint apiproxy/resources/jsc
@@ -222,11 +222,8 @@ jmeter -n -l output.txt -t test/jmeter/pingstatus.jmx -DtestData=pingstatus_test
 * mvn -P test jshint:lint@jslint
 
 ### Aplicki / Cucumber Standalone Tests
-These will not work since config.json does not have actual default API Keys, they get replaced for every profile
-* cucumberjs test/apickli/features/ping.feature
-* cucumberjs test/apickli/features --tags @health
-* cucumberjs test/apickli/features --tags @intg
-* cucumberjs test/apickli/features --tags @intg,@health
+* mvn -Ptest process-resources exec:exec@integration -Ddeployment.suffix= -Dapi.testtag=@get-ping
+* node ./node_modules/cucumber/bin/cucumber.js target/test/integration/features --tags @get-status
 
 NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherkin.js, it doesnt find it, so use 1.3.3
 
@@ -256,4 +253,13 @@ NOTE: For some reason the latest cucumber (2.3.4) doesnt work with apickli-gherk
         </profile>
 ```
 
-
+### Frequently used commands
+mvn jshint:lint
+mvn -Ptest exec:exec@unit
+mvn -Ptest install -Ddeployment.suffix=
+mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
+mvn -Ptest process-resources exec:exec@integration -Ddeployment.suffix= -Dapi.testtag=@get-ping
+mvn -Ptest install -Ddeployment.suffix= -Dapigee.config.options=sync -Dapi.testtag=@get-ping
+mvn -Ptest apigee-config:kvms -Ddeployment.suffix= -Dapigee.config.options=sync
+mvn -Ptest clean process-resources jmeter:jmeter jmeter-analysis:analyze -Ddeployment.suffix=
+mvn -Pdev clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-status

@@ -16,10 +16,10 @@ Feature: API proxy health
         And response body path $.latency should be ^\d{1,2}
         And response body path $.message should be PONG
 
-	@get-statuses
+	@get-status
     Scenario: Verify the backend service is responding
         Given I set clientId header to `clientId`
-		When I GET /statuses
+		When I GET /status
         Then response code should be 200
         And response header Content-Type should be application/json
         # And response body path $.environment should be dev

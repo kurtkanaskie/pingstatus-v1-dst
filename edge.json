@@ -6,7 +6,7 @@
         "test": {
             "targetServers": [
                 {
-                    "name": "pingstatus",
+                    "name": "pingstatus-v1",
                     "host": "apibaas-trial.apigee.net",
                     "isEnabled": true,
                     "port": 443,
@@ -20,23 +20,30 @@
                 }
             ],
             "caches": [],
-            "kvms": [{
-                "name": "pingstatus",
-                "entry": [{
-                        "name": "loggingUrl",
-                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
-                    },
-                    {
-                        "name": "loggingLevel",
-                        "value": "INFO"
-                    }
-                ]
-            }]
+            "kvms": [
+                {
+                    "name": "pingstatus-v1",
+                    "entry": [
+                        {
+                            "name": "target.basepath",
+                            "value": "kurtkanaskie/sandbox"
+                        },
+                        {
+                            "name": "logging.log",
+                            "value": "true"
+                        },
+                        {
+                            "name": "logging.level",
+                            "value": "DEBUG"
+                        }
+                    ]
+                }
+            ]
         },
         "prod": {
             "targetServers": [
                 {
-                    "name": "pingstatus",
+                    "name": "pingstatus-v1",
                     "host": "apibaas-trial.apigee.net",
                     "isEnabled": true,
                     "port": 443,
@@ -50,18 +57,25 @@
                 }
             ],
             "caches": [],
-            "kvms": [{
-                "name": "pingstatus",
-                "entry": [{
-                        "name": "loggingUrl",
-                        "value": "https://apibaas-trial.apigee.net/kurtkanaskie/logging"
-                    },
-                    {
-                        "name": "loggingLevel",
-                        "value": "INFO"
-                    }
-                ]
-            }]
+            "kvms": [
+                {
+                    "name": "pingstatus-v1",
+                    "entry": [
+                        {
+                            "name": "target.basepath",
+                            "value": "kurtkanaskie/sandbox"
+                        },
+                        {
+                            "name": "logging.log",
+                            "value": "true"
+                        },
+                        {
+                            "name": "logging.level",
+                            "value": "DEBUG"
+                        }
+                    ]
+                }
+            ]
         }
     },
     "orgConfig": {
