@@ -13,14 +13,6 @@
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
     <FaultRules>
-        <!-- Call RF for ping response again so we don't fall into DefaultFaultRule -->
-        <FaultRule name="Ping-response">
-            <Condition>(fault.name = "RaiseFault") and (message.status.code = 200)</Condition>
-            <Step>
-                <FaultRules/>
-                <Name>RF-create-ping-response</Name>
-            </Step>
-        </FaultRule>
         <FaultRule name="Resource-not-found">
             <Condition>(fault.name = "RaiseFault") and (message.status.code = 404)</Condition>
             <Step>
@@ -64,7 +56,7 @@
                     <Name>JS-set-time-data</Name>
                 </Step>
                 <Step>
-                    <Name>RF-create-ping-response</Name>
+                    <Name>AM-create-ping-response</Name>
                 </Step>
             </Request>
             <Response/>
@@ -4577,7 +4569,7 @@
                     <Name>JS-set-time-data</Name>
                 </Step>
                 <Step>
-                    <Name>RF-create-ping-response</Name>
+                    <Name>AM-create-ping-response</Name>
                 </Step>
             </Request>
             <Response/>
@@ -4612,11 +4604,9 @@
         <Properties/>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
-    <!--
     <RouteRule name="ping">
-        <Condition>(proxy.pathsuffix MatchesPath "/ping")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/ping*")</Condition>
     </RouteRule>
-    -->
     <RouteRule name="default">
         <TargetEndpoint>default</TargetEndpoint>
     </RouteRule>

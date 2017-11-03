@@ -366,6 +366,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <sourceDirFailed>false</sourceDirFailed>
                     <source>${project.root.dir}/results/performance/*</source>
 					<targetDirectory>${project.root.dir}/results/performance/reports</targetDirectory>
                 </configuration>

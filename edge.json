@@ -79,9 +79,61 @@
         }
     },
     "orgConfig": {
-        "apiProducts": [],
-        "developers": [],
+        "apiProducts": [
+            {
+                "name": "pingstatus-v1-product-test",
+                "apiResources": [
+                    "/",
+                    "/**"
+                ],
+                "approvalType": "auto",
+                "attributes": [
+                    {
+                        "name": "access",
+                        "value": "public"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Product to test pingstatus API for test env"
+                    }
+                ],
+                "description": "Product to test pingstatus-v1 API in test env",
+                "displayName": "pingstatus-v1-product-test",
+                "environments": [
+                    "test"
+                ],
+                "proxies": [
+                    "pingstatus-v1"
+                ],
+                "quota": "10000",
+                "quotaInterval": "1",
+                "quotaTimeUnit": "month",
+                "scopes": []
+            }        
+        ],
+        "developers": [
+            {
+                "email": "kurtkanaskie@google.com",
+                "firstName": "Kurt",
+                "lastName": "Kanaskie",
+                "userName": "kurtkanaskie",
+                "attributes": [
+                    {
+                        "name": "note",
+                        "value": "developer+suffix@google.com doesn't work + becomes %20"
+                    }
+                ]
+            }
+        ],
         "developerApps": {
+            "kurtkanaskie@google.com": [
+                {
+                    "name": "pingstatus-v1-app-test",
+                    "apiProducts": [ "pingstatus-v1-product-test" ],
+                    "callbackUrl": "NA",
+                    "scopes": []
+                }
+            ]
         }
     }
 }

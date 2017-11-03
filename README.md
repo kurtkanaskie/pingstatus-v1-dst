@@ -260,6 +260,9 @@ mvn -Ptest install -Ddeployment.suffix=
 mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
 mvn -Ptest process-resources exec:exec@integration -Ddeployment.suffix= -Dapi.testtag=@get-ping
 mvn -Ptest install -Ddeployment.suffix= -Dapigee.config.options=sync -Dapi.testtag=@get-ping
-mvn -Ptest apigee-config:kvms -Ddeployment.suffix= -Dapigee.config.options=sync
 mvn -Ptest clean process-resources jmeter:jmeter jmeter-analysis:analyze -Ddeployment.suffix=
 mvn -Pdev clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-status
+
+mvn -Ptest apigee-config:kvms -Dapigee.config.options=sync
+mvn -Ptest apigee-config:developerapps apige-config:apiproducts -Dapigee.config.options=update
+mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
