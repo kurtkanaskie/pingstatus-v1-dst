@@ -1,10 +1,10 @@
 var apickli = require('apickli');
 var config = require('../../test-config.json');
 
-var defaultBasePath = config.pingstatus.basepath;
-var defaultDomain = config.pingstatus.domain;
+var defaultBasePath = config.apiconfig.basepath;
+var defaultDomain = config.apiconfig.domain;
 
-console.log('pingstatus api: [' + config.pingstatus.domain + ', ' + config.pingstatus.basepath + ']');
+console.log('apiconfig: [' + config.apiconfig.domain + ', ' + config.apiconfig.basepath + ']');
 
 var getNewApickliInstance = function(basepath, domain) {
 	basepath = basepath || defaultBasePath;

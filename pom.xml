@@ -39,10 +39,10 @@
 	-->
 	<profiles>
 		<profile>
-			<id>test</id>
+			<id>dst-sandbox</id>
 			<properties>
-				<apigee.profile>test</apigee.profile>
-				<apigee.env>test</apigee.env>
+				<apigee.profile>dst-sandbox</apigee.profile>
+				<apigee.env>sandbox</apigee.env>
 				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
 				<apigee.org>${env.APIGEE_ORG}</apigee.org>
@@ -53,9 +53,9 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>test-training</id>
+			<id>training-test</id>
 			<properties>
-				<apigee.profile>test</apigee.profile>
+				<apigee.profile>training-test</apigee.profile>
 				<apigee.env>test</apigee.env>
 				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
 				<apigee.apiversion>v1</apigee.apiversion>
@@ -64,6 +64,22 @@
 				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
 				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
 				<api.testtag>~@intg,~@health,~@wip,~@mock</api.testtag>
+				<clientId>N7w0EUQpifRDYCSpWs6tnUt8jYr6JZbl</clientId>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo15-test</id>
+			<properties>
+				<apigee.profile>demo15-test</apigee.profile>
+				<apigee.env>test</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
+				<api.testtag>~@intg,~@health,~@wip,~@mock</api.testtag>
+				<clientId>lxHNz4MYg4bHkU0LLdqvxcFOKqO1Nc5Q</clientId>
 			</properties>
 		</profile>
 		<profile>
@@ -178,7 +194,6 @@
 							<token>/pingstatus/v1</token>
 							<value>/pingstatus/${deployment.suffix}v1</value>
 						</replacement>
-						<!-- for the ping and status response tests -->
 						<replacement>
 							<token>pingstatus-v1</token>
 							<value>pingstatus-${deployment.suffix}v1</value>
@@ -190,6 +205,10 @@
 						<replacement>
 							<token>@description</token>
 							<value>commit ${commit} from ${branch} branch by ${user.name}</value>
+						</replacement>
+						<replacement>
+							<token>REPLACE-CLIENTID</token>
+							<value>${clientId}</value>
 						</replacement>
 					</replacements>
 				</configuration>

@@ -263,6 +263,7 @@ mvn -Ptest install -Ddeployment.suffix= -Dapigee.config.options=sync -Dapi.testt
 mvn -Ptest clean process-resources jmeter:jmeter jmeter-analysis:analyze -Ddeployment.suffix=
 mvn -Pdev clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-status
 
-mvn -Ptest apigee-config:kvms -Dapigee.config.options=sync
-mvn -Ptest apigee-config:developerapps apige-config:apiproducts -Dapigee.config.options=update
+mvn -Ptest apigee-config:kvms apigee-config:targetservers -Dapigee.config.options=sync
+mvn -Ptest apigee-config:developers apigee-config:apiproducts apigee-config:developerapps -Dapigee.config.options=update
+mvn -Ptest apigee-config:exportAppKeys -Dapigee.config.exportDir=./appkeys
 mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true

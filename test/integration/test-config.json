@@ -1,5 +1,5 @@
 {
-    "pingstatus": {
+    "apiconfig": {
         "domain": "kurtkanaskie-test.apigee.net",
         "basepath": "/pingstatus/v1",
         "apiproxy": "pingstatus-v1",

@@ -41,12 +41,7 @@
     </PreFlow>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response>
-            <Step>
-                <FaultRules/>
-                <Name>JS-set-time-data</Name>
-            </Step>
-        </Response>
+        <Response/>
     </PostFlow>
     <Flows>
         <Flow name="ping1">
