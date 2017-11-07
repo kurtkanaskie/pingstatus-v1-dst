@@ -151,14 +151,14 @@
         ],
         "developers": [
             {
-                "email": "kurtkanaskie@google.com",
-                "firstName": "Kurt",
+                "email": "kurtkanaskie+app@google.com",
+                "firstName": "Kurt App",
                 "lastName": "Kanaskie",
-                "userName": "kurtkanaskie",
+                "userName": "kurtappkanaskie",
                 "attributes": [
                     {
                         "name": "note",
-                        "value": "developer+suffix@google.com doesn't work + becomes %20"
+                        "value": "developer+suffix@google.com is fixed"
                     }
                 ]
             }
@@ -169,7 +169,13 @@
                     "name": "pingstatus-v1-app-sandbox",
                     "apiProducts": [ "pingstatus-v1-product-sandbox" ],
                     "callbackUrl": "NA",
-                    "scopes": []
+                    "scopes": [],
+                    "attributes": [
+                        {
+                            "name": "custom.privacy",
+                            "value": "confidential"
+                        }
+                    ]
                 }
             ]
         }
