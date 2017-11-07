@@ -23,6 +23,7 @@
             "kvms": [
                 {
                     "name": "pingstatus-v1",
+                    "encrypted": true,
                     "entry": [
                         {
                             "name": "target.basepath",
@@ -118,7 +119,7 @@
     "orgConfig": {
         "apiProducts": [
             {
-                "name": "pingstatus-v1-product-test",
+                "name": "pingstatus-v1-product-sandbox",
                 "apiResources": [
                     "/",
                     "/**"
@@ -131,13 +132,13 @@
                     },
                     {
                         "name": "description",
-                        "value": "Product to test pingstatus API for test env"
+                        "value": "Product to test pingstatus API for sandbox env"
                     }
                 ],
-                "description": "Product to test pingstatus-v1 API in test env",
-                "displayName": "pingstatus-v1-product-test",
+                "description": "Product to test pingstatus-v1 API in sandbox env",
+                "displayName": "pingstatus-v1-product-sandbox",
                 "environments": [
-                    "test"
+                    "sandbox"
                 ],
                 "proxies": [
                     "pingstatus-v1"
@@ -165,8 +166,8 @@
         "developerApps": {
             "kurtkanaskie@google.com": [
                 {
-                    "name": "pingstatus-v1-app-test",
-                    "apiProducts": [ "pingstatus-v1-product-test" ],
+                    "name": "pingstatus-v1-app-sandbox",
+                    "apiProducts": [ "pingstatus-v1-product-sandbox" ],
                     "callbackUrl": "NA",
                     "scopes": []
                 }

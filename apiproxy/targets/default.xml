@@ -29,6 +29,6 @@
         <LoadBalancer>
             <Server name="pingstatus-v1"/>
         </LoadBalancer>
-        <Path>{flow.target.basepath}</Path>
+        <Path>{private.flow.target.basepath}</Path>
     </HTTPTargetConnection>
 </TargetEndpoint>

@@ -3,17 +3,17 @@
     <DisplayName>KV-config-values</DisplayName>
     <Properties/>
     <ExpiryTimeInSecs>60</ExpiryTimeInSecs>
-    <Get assignTo="flow.target.basepath" index="1">
+    <Get assignTo="private.flow.target.basepath" index="1">
         <Key>
             <Parameter>target.basepath</Parameter>
         </Key>
     </Get>
-    <Get assignTo="loggingUrl" index="1">
+    <Get assignTo="private.loggingUrl" index="1">
         <Key>
             <Parameter>loggingUrl</Parameter>
         </Key>
     </Get>
-    <Get assignTo="logging" index="1">
+    <Get assignTo="private.logging" index="1">
         <Key>
             <Parameter>loggingLevel</Parameter>
         </Key>
