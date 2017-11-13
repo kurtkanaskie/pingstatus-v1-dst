@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-resource-not-found">
-    <DisplayName>AM resource not found</DisplayName>
+    <DisplayName>AM-resource-not-found</DisplayName>
     <Properties/>
     <AssignVariable>
         <Name>flow.error.code</Name>

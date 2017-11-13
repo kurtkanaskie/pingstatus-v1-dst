@@ -3,18 +3,20 @@
     "apiConfig": {
     },
     "envConfig": {
-        "sandbox": {
+        "dev": {
             "targetServers": [
                 {
                     "name": "pingstatus-v1",
-                    "host": "apibaas-trial.apigee.net",
+                    "host": "financialservices-dev-dev.apigee.net",
                     "isEnabled": true,
                     "port": 443,
                     "sSLInfo": {
                         "ciphers": [],
-                        "clientAuthEnabled": "false",
+                        "clientAuthEnabled": "true",
                         "enabled": "true",
                         "ignoreValidationErrors": false,
+                        "keyAlias": "keystore-outbound-pingstatus-v1-dev",
+                        "keyStore": "ref://keystore-outbound-pingstatus-v1-dev-ref",
                         "protocols": []
                     }
                 }
@@ -27,7 +29,47 @@
                     "entry": [
                         {
                             "name": "target.basepath",
-                            "value": "kurtkanaskie/sandbox"
+                            "value": "pingstatusmock/v1"
+                        },
+                        {
+                            "name": "logging.log",
+                            "value": "true"
+                        },
+                        {
+                            "name": "logging.level",
+                            "value": "DEBUG"
+                        }
+                    ]
+                }
+            ]
+        },
+        "sandbox": {
+            "targetServers": [
+                {
+                    "name": "pingstatus-v1",
+                    "host": "financialservices-dev-sandbox.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "true",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "keyAlias": "keystore-outbound-pingstatus-v1-dev",
+                        "keyStore": "ref://keystore-outbound-pingstatus-v1-dev-ref",
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [
+                {
+                    "name": "pingstatus-v1",
+                    "encrypted": true,
+                    "entry": [
+                        {
+                            "name": "target.basepath",
+                            "value": "pingstatusmock/v1"
                         },
                         {
                             "name": "logging.log",
@@ -119,6 +161,36 @@
     "orgConfig": {
         "apiProducts": [
             {
+                "name": "pingstatus-v1-product-dev",
+                "apiResources": [
+                    "/",
+                    "/**"
+                ],
+                "approvalType": "auto",
+                "attributes": [
+                    {
+                        "name": "access",
+                        "value": "public"
+                    },
+                    {
+                        "name": "description",
+                        "value": "Product to test pingstatus API for dev env"
+                    }
+                ],
+                "description": "Product to test pingstatus-v1 API in dev env",
+                "displayName": "pingstatus-v1-product-dev",
+                "environments": [
+                    "dev"
+                ],
+                "proxies": [
+                    "pingstatus-v1"
+                ],
+                "quota": "10000",
+                "quotaInterval": "1",
+                "quotaTimeUnit": "month",
+                "scopes": []
+            },
+            {
                 "name": "pingstatus-v1-product-sandbox",
                 "apiResources": [
                     "/",
@@ -147,7 +219,7 @@
                 "quotaInterval": "1",
                 "quotaTimeUnit": "month",
                 "scopes": []
-            }        
+            }          
         ],
         "developers": [
             {
@@ -165,6 +237,18 @@
         ],
         "developerApps": {
             "kurtkanaskie@google.com": [
+                {
+                    "name": "pingstatus-v1-app-dev",
+                    "apiProducts": [ "pingstatus-v1-product-dev" ],
+                    "callbackUrl": "NA",
+                    "scopes": [],
+                    "attributes": [
+                        {
+                            "name": "custom.privacy",
+                            "value": "confidential"
+                        }
+                    ]
+                },
                 {
                     "name": "pingstatus-v1-app-sandbox",
                     "apiProducts": [ "pingstatus-v1-product-sandbox" ],

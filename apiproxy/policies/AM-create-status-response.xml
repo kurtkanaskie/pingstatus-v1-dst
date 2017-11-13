@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AM-create-status-response">
-    <DisplayName>AM create status response</DisplayName>
+    <DisplayName>AM-create-status-response</DisplayName>
     <Properties/>
     <Set>
-        <Payload contentType="application/json" variablePrefix="@" variableSuffix="#">
+        <Payload contentType="application/json">
 {
-    "environment": "@environment.name#",
-    "apiproxy": "@apiproxy.name#",
-    "basepath": "@proxy.basepath#",
-    "suffix": "@proxy.pathsuffix#",
-    "client": "@client.host#",
-    "time": "@system.time#",
-    "proxyLatency": "@total_client_time#",
-    "targetLatency": "@total_target_time#",
-    "latency": "@total_request_time#",
+    "environment": "{environment.name}",
+    "apiproxy": "{apiproxy.name}",
+    "basepath": "{proxy.basepath}",
+    "suffix": "{proxy.pathsuffix}",
+    "client": "{client.host}",
+    "clientCN":"{client.cn}",
+    "time": "{system.time}",
+    "proxyLatency": {total_client_time},
+    "targetLatency": {total_target_time},
+    "latency": {total_request_time},
     "message":"STATUS",
-    "backendMessage":@response.content#
+    "backendMessage":{response.content}
 }
 </Payload>
     </Set>

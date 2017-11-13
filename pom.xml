@@ -39,6 +39,22 @@
 	-->
 	<profiles>
 		<profile>
+			<id>dst-dev</id>
+			<properties>
+				<apigee.profile>dst-dev</apigee.profile>
+				<apigee.env>dev</apigee.env>
+				<apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
+				<apigee.apiversion>v1</apigee.apiversion>
+				<apigee.org>${env.APIGEE_ORG}</apigee.org>
+				<apigee.username>${env.APIGEE_USERNAME}</apigee.username>
+				<apigee.password>${env.APIGEE_PASSWORD}</apigee.password>
+				<apigee.authtype>oauth</apigee.authtype>
+				<api.northbound.domain>${env.APIGEE_NORTHBOUND_DOMAIN}</api.northbound.domain>
+				<api.testtag>~@intg,~@health,~@wip,~@mock</api.testtag>
+				<clientId>bz2L7upArVt8TWnIdkqoUZzLLEeBfQvY</clientId>
+			</properties>
+		</profile>
+		<profile>
 			<id>dst-sandbox</id>
 			<properties>
 				<apigee.profile>dst-sandbox</apigee.profile>

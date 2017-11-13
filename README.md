@@ -269,3 +269,6 @@ mvn -Ptest apigee-config:developers apigee-config:apiproducts apigee-config:deve
 mvn -Ptest apigee-config:exportAppKeys -Dapigee.config.exportDir=./appkeys
 mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
 mvn -Pdst-sandbox clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-ping
+mvn -Pdst-dev install -Ddeployment.suffix= -Dapigee.config.options=update -Dapi.testtag=@get-ping -DskipTests=true
+mvn -Pdst-dev apigee-config:exportAppKeys -Dapigee.config.exportDir=./dst-appkeys
+mvn -Pdst-dev apigee-config:kvms apigee-config:targetservers -Dapigee.config.options=update
