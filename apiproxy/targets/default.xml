@@ -24,7 +24,11 @@
     </PostFlow>
     <Flows>
         <Flow name="status">
-            <Request/>
+            <Request>
+                <Step>
+                    <Name>AM-set-get-status-pathsuffix</Name>
+                </Step>
+            </Request>
             <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/status") and (request.verb = "GET")</Condition>
         </Flow>
@@ -33,6 +37,6 @@
         <LoadBalancer>
             <Server name="pingstatus-v1"/>
         </LoadBalancer>
-        <Path>{private.flow.target.basepath}</Path>
+        <Path>{private.flow.target.basepath}/{flow.target.pathsuffix}</Path>
     </HTTPTargetConnection>
 </TargetEndpoint>
