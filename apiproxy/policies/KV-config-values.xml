@@ -8,14 +8,19 @@
             <Parameter>target.basepath</Parameter>
         </Key>
     </Get>
-    <Get assignTo="private.loggingUrl" index="1">
+    <Get assignTo="private.flow.client.cns">
         <Key>
-            <Parameter>loggingUrl</Parameter>
+            <Parameter>client.cns</Parameter>
         </Key>
     </Get>
-    <Get assignTo="private.logging" index="1">
+    <Get assignTo="private.logging.log" index="1">
         <Key>
-            <Parameter>loggingLevel</Parameter>
+            <Parameter>logging.log</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.logging.level" index="1">
+        <Key>
+            <Parameter>logging.level</Parameter>
         </Key>
     </Get>
     <Scope>environment</Scope>

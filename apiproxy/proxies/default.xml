@@ -3,12 +3,8 @@
     <Description/>
     <DefaultFaultRule name="DefaultFaultRule">
         <Step>
-            <FaultRules/>
+            <Condition>flow.error.code != null</Condition>
             <Name>AM-default-proxy-fault</Name>
-        </Step>
-        <Step>
-            <FaultRules/>
-            <Name>JS-set-time-data</Name>
         </Step>
         <AlwaysEnforce>true</AlwaysEnforce>
     </DefaultFaultRule>
@@ -38,6 +34,17 @@
             </Step>
             <Step>
                 <Name>AM-ssl-variables</Name>
+            </Step>
+            <Step>
+                <Name>JS-verify-client-cn</Name>
+            </Step>
+            <Step>
+                <Condition>(flow.valid.client.cn != true)</Condition>
+                <Name>RF-invalid-client-cn</Name>
+            </Step>
+            <Step>
+                <Condition>(client.cn != verifyapikey.VA-header.X-Client-User)</Condition>
+                <Name>RF-client-cn-mismatch</Name>
             </Step>
         </Request>
         <Response/>

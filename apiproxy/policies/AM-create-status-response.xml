@@ -16,6 +16,12 @@
     "targetLatency": {total_target_time},
     "latency": {total_request_time},
     "message":"STATUS",
+    "backendHeaders":{
+        "X-Client-Cert":"{response.header.X-Client-Cert}",
+        "X-Client-Serial":"{response.header.X-Client-Serial}",
+        "X-Client-DN":"{response.header.X-Client-DN}",
+        "X-Client-User":"{response.header.X-Client-User}"
+    },
     "backendMessage":{response.content}
 }
 </Payload>

@@ -55,8 +55,8 @@
                         "clientAuthEnabled": "true",
                         "enabled": "true",
                         "ignoreValidationErrors": false,
-                        "keyAlias": "keystore-outbound-pingstatus-v1-dev",
-                        "keyStore": "ref://keystore-outbound-pingstatus-v1-dev-ref",
+                        "keyAlias": "keystore-outbound-pingstatus-v1-sandbox",
+                        "keyStore": "ref://keystore-outbound-pingstatus-v1-sandbox-ref",
                         "protocols": []
                     }
                 }
@@ -67,6 +67,10 @@
                     "name": "pingstatus-v1",
                     "encrypted": true,
                     "entry": [
+                        {
+                            "name": "client.cns",
+                            "value": "Kurt Developer Kanaskie,Arvind"
+                        },
                         {
                             "name": "target.basepath",
                             "value": "pingstatusmock/v1"
@@ -199,11 +203,11 @@
                 "approvalType": "auto",
                 "attributes": [
                     {
-                        "name": "access",
-                        "value": "public"
+                        "name": "custom.client.cns",
+                        "value": "Kurt Developer Kanaskie,Arvind"
                     },
                     {
-                        "name": "description",
+                        "name": "custom.description",
                         "value": "Product to test pingstatus API for sandbox env"
                     }
                 ],
@@ -250,7 +254,7 @@
                     ]
                 },
                 {
-                    "name": "pingstatus-v1-app-sandbox",
+                    "name": "pingstatus-v1-app-sandbox-kurt",
                     "apiProducts": [ "pingstatus-v1-product-sandbox" ],
                     "callbackUrl": "NA",
                     "scopes": [],
@@ -258,6 +262,91 @@
                         {
                             "name": "custom.privacy",
                             "value": "confidential"
+                        },
+                        {
+                            "name": "X-Client-Cert",
+                            "value": "-----BEGIN CERTIFICATE-----
+MIID0zCCArsCCQCG+wqNerhBtjANBgkqhkiG9w0BAQsFADCBmjELMAkGA1UEBhMC
+VVMxFTATBgNVBAgTDFBlbm5zeWx2YW5pYTERMA8GA1UEBxMITWFjdW5naWUxDTAL
+BgNVBAoTBEt1cnQxEjAQBgNVBAsTCUt1cnQgQVBJczEWMBQGA1UEAxMNS3VydCBL
+YW5hc2tpZTEmMCQGCSqGSIb3DQEJARYXa3VydGthbmFza2llQGdvb2dsZS5jb20w
+HhcNMTcxMTA3MTUzNDUwWhcNMjAxMTA2MTUzNDUwWjCBvzELMAkGA1UEBhMCVVMx
+FTATBgNVBAgTDFBlbm5zeWx2YW5pYTERMA8GA1UEBxMITWFjdW5naWUxFTATBgNV
+BAoTDEt1cnQgYXMgS3VydDEbMBkGA1UECxMSS3VydCBBUEkgRGV2ZWxvcGVyMSAw
+HgYDVQQDExdLdXJ0IERldmVsb3BlciBLYW5hc2tpZTEwMC4GCSqGSIb3DQEJARYh
+a3VydGthbmFza2llK2RldmVsb3BlckBnb29nbGUuY29tMIIBHjANBgkqhkiG9w0B
+AQEFAAOCAQsAMIIBBgKB/g9/KTy39s6aKwBAG8FkL0XSgf5n78sR1H1/fEna+N9+
+hStY0B9/JcasLHf8EKfib4xKG4MEXNnCO0Axfss/aUCFPiDOc0/kkXiKWZkp9/Zx
+zmQeEHsqMirjIpQ9Uq1AntPpuGkiTqIBOxdspk6rcQlcgYogpPPBhMUh1CV7kjga
+FqvJP4YaDCCnKu9aWVXhunJj139QzpxZ3JwBfIrbEuwRkEG9J4DqYSnXrjOiICGA
+iXkL4t3935CbzoJ8Pa/yEGWbSckjivUd5mZqxNxl98l5VfZ0SJyJ2eCTez4uCSt5
+ATXS2pPe2DibveuKZfWwvz8EaDc6OEcelqnAlZsPAgMBAAEwDQYJKoZIhvcNAQEL
+BQADggEBAEWN5v2XYiqav5ZngFhXWBiR96VR7y9xtZx1iN3BTiS91Q6Drh+hq3GC
+w/dz15PxGMboPEuOgJ3GtQtwVANaQhngZbmG9uCzmaVtfYhJ1mrIk4OjuHvi57/a
+e8EcL2LwtzK4wSBzrhGoI80V85ZBZM1c2lAnz30e4wcfXlA2u5eTkpF6T6k2z5p4
+oznNN7G2SU0k9AjLX3GMtG/KTsILLX1eQ2IjXJFgyLkSGifmudn07uVizjLLBDHI
+e2N4P9ypJi/GibQwnAbpfFWywH2MH7VeM4eJIdN2UCXiVbewkpa/sg5U0NqpO9Hz
+dac6Yiwn26BeG3LctQB5ZQR7d3aQ5Ko=
+-----END CERTIFICATE-----"
+                        },
+                        {
+                            "name": "X-Client-Serial",
+                            "value": "00:86:fb:0a:8d:7a:b8:41:b6"
+                        },
+                        {
+                            "name": "X-Client-DN",
+                            "value": "CN=Kurt Developer Kanaskie, O=Kurt, OU=Kurt APIs"
+                        },
+                        {
+                            "name": "X-Client-User",
+                            "value": "Kurt Developer Kanaskie"
+                        }
+                    ]
+                },
+                {
+                    "name": "pingstatus-v1-app-sandbox-arvind",
+                    "apiProducts": [ "pingstatus-v1-product-sandbox" ],
+                    "callbackUrl": "NA",
+                    "scopes": [],
+                    "attributes": [
+                        {
+                            "name": "custom.privacy",
+                            "value": "confidential"
+                        },
+                        {
+                            "name": "X-Client-Cert",
+                            "value": "-----BEGIN CERTIFICATE-----
+MIIDPTCCAiUCCQD20CyjH/re5jANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECAwCTkUxCjAIBgNVBAcMAS0xCjAIBgNVBAoMAS0xCjAIBgNVBAsM
+AS0xEjAQBgNVBAMMCUFydmluZC1DQTEQMA4GCSqGSIb3DQEJARYBLTAeFw0xNzEx
+MDcxNzI3MzNaFw0yMDExMDYxNzI3MzNaMGExCzAJBgNVBAYTAlVTMQswCQYDVQQI
+DAJORTEKMAgGA1UEBwwBLTEKMAgGA1UECgwBLTEKMAgGA1UECwwBLTEPMA0GA1UE
+AwwGQXJ2aW5kMRAwDgYJKoZIhvcNAQkBFgEtMIIBHjANBgkqhkiG9w0BAQEFAAOC
+AQsAMIIBBgKB/goJ1a7btdEmbkGmdwXrZt9SJwJE9AGB22lMoE6EzlVRz28Vgu2x
+o2XnGzIlVUmPs8q7BEjTZ4lrFH+ZZsWLm6DQvosJlaSeHC7ZVDWcq1MMhVHpgz22
+go+e5h+1ZCmahk051nGKWeEIwWGM7aVOmsZKv5P2et2JpljGLjsVaowI9e8WJwXA
+69WOKDJU4G5KXMy9WaUQH2baT34sxteDrZ0HK9bw0jdpnHeUPbz1srNbvz9HSu+V
+r6J7BybJLQo+KUmuA8UANP03qGE8i0j0D98HDcQuDdWBtIDd0qVpP60uKbYF/8tX
+WFxjJnFaT+yyjKRslef23pwM7v+5GsZ7AgMBAAEwDQYJKoZIhvcNAQELBQADggEB
+ADU9LqeJkCFZD6N8pakqoGNxHxCeJNj40Nns73ftmSzSQvQWisbUaKrPPhi6wKYY
+CNnE48iSUdr+RSPJRiP9xrlgjsK70NAGdNsjiEbk50+75Avgeq9DRzK208itMXN3
+nBwWxr2XUW2HIN9yqTNAKgoXTBt7VYdQ3GPKCc9nYLfEoYEXsoeaLehJSi/zxHut
+XJE8vnVPHvGGek/4Zy+12KKHKuND+VdPkdGq8PABxo5LSmYCySb/t+OQJw6O2Y5s
+Ex42MG+ufLNK36qI5QX5e38MoWDnU5IECZtd4zhiY35hLFuaXzv8iiErYkmQ5l2M
+983JItOYlRNYyWlSemKgxeo=
+-----END CERTIFICATE-----"
+                        },
+                        {
+                            "name": "X-Client-Serial",
+                            "value": "00:f6:d0:2c:a3:1f:fa:de:e6"
+                        },
+                        {
+                            "name": "X-Client-DN",
+                            "value": "CN=Arvind, O=, OU=, "
+                        },
+                        {
+                            "name": "X-Client-User",
+                            "value": "Arvind"
                         }
                     ]
                 }
