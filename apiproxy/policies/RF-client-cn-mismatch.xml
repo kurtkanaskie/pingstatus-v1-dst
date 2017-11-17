@@ -8,7 +8,7 @@
             <Payload contentType="application/json">
 {
     "code": "400.01.002",
-    "message":"Mismatch client.cn in certificate does not match application client.cn attribute",
+    "message":"Mismatch client.cn in certificate '{client.cn}' does not match application client.cn attribute '{verifyapikey.VA-header.X-Client-CN}'",
     "info":"https://developers.company.com/errors#400.01.001"
 }
 </Payload>

@@ -43,7 +43,7 @@
                 <Name>RF-invalid-client-cn</Name>
             </Step>
             <Step>
-                <Condition>(client.cn != verifyapikey.VA-header.X-Client-User)</Condition>
+                <Condition>(client.cn != verifyapikey.VA-header.X-Client-CN)</Condition>
                 <Name>RF-client-cn-mismatch</Name>
             </Step>
         </Request>

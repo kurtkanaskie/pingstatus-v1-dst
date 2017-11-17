@@ -18,55 +18,6 @@ Jenkins projects are set up to run using Maven and Maven runs via configurations
 * install - copy, package and install into Apigee
 * integration - run integration tests
 
-Here is the tree structure, with a little pruning for brevity:
-```
-.
-├── README.md
-├── apiproxy
-│   ├── pingstatus-v1.xml
-│   ├── policies
-│   │   ├── AM-Set-Service-Unavailable-Error-Variables.xml
-│   │   ├── AM-create-status-response.xml
-│   │   ├── AM-debug.xml
-│   │   ├── AM-default-proxy-fault.xml
-│   │   ├── AM-missing-or-invalid-clientId.xml
-│   │   ├── AM-resource-not-found.xml
-│   │   ├── JS-set-time-data.xml
-│   │   ├── KV-Get-Config-Values.xml
-│   │   ├── RF-create-ping-response.xml
-│   │   ├── RF-path-suffix-not-found.xml
-│   │   └── VA-header.xml
-│   ├── proxies
-│   │   └── default.xml
-│   ├── resources
-│   │   └── jsc
-│   │       └── JS-set-time-data.js
-│   └── targets
-│       └── default.xml
-├── config.json
-├── oas
-│   └── pingstatus-v1-oas.json
-├── package.json
-├── pom.xml
-└── test
-    ├── apickli
-    │   ├── config
-    │   │   └── config.json
-    │   └── features
-    │       ├── errorHandling.feature
-    │       ├── health.feature
-    │       ├── step_definitions
-    │       │   ├── apickli-gherkin.js
-    │       │   ├── errorHandling.js
-    │       │   ├── factory.js
-    │       │   └── init.js
-    │       └── support
-    │           └── env.js
-    └── jmeter
-        ├── test.jmx
-        └── testdata.csv
-```
-
 ## Git Commands
 
 ### Intitial
@@ -261,14 +212,22 @@ mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
 mvn -Ptest process-resources exec:exec@integration -Ddeployment.suffix= -Dapi.testtag=@get-ping
 mvn -Ptest install -Ddeployment.suffix= -Dapigee.config.options=sync -Dapi.testtag=@get-ping
 mvn -Ptest clean process-resources jmeter:jmeter jmeter-analysis:analyze -Ddeployment.suffix=
-mvn -Pdev clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-status
-
-mvn -Ptest apigee-config:kvms apigee-config:targetservers -Dapigee.config.options=sync
-mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@NONE -DskipTests=true
+mvn -Ptest clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-status
 mvn -Ptest apigee-config:developers apigee-config:apiproducts apigee-config:developerapps -Dapigee.config.options=update
 mvn -Ptest apigee-config:exportAppKeys -Dapigee.config.exportDir=./appkeys
 mvn -Ptest install -Ddeployment.suffix= -Dapi.testtag=@get-ping -DskipTests=true
 mvn -Pdst-sandbox clean process-resources -Ddeployment.suffix= exec:exec@integration -Dapi.testtag=@get-ping
-mvn -Pdst-dev install -Ddeployment.suffix= -Dapigee.config.options=update -Dapi.testtag=@get-ping -DskipTests=true
-mvn -Pdst-dev apigee-config:exportAppKeys -Dapigee.config.exportDir=./dst-appkeys
-mvn -Pdst-dev apigee-config:kvms apigee-config:targetservers -Dapigee.config.options=update
+
+mvn -Pdst-sandbox apigee-config:targetservers -Dapigee.config.options=update
+mvn -Pdst-sandbox apigee-config:developerapps -Dapigee.config.options=update
+mvn -Pdst-sandbox apigee-config:apiproducts -Dapigee.config.options=update
+mvn -Pdst-sandbox apigee-config:kvms -Dapigee.config.options=update
+
+Install proxy no integration or jmeter tests
+mvn -Pdst-sandbox install -Ddeployment.suffix= -Dapi.testtag=@NONE -DskipTests=true
+
+Install proxy and update all configs, no integration or jmeter tests
+mvn -Pdst-sandbox install -Ddeployment.suffix= -Dapigee.config.options=update -Dapi.testtag=@NONE -DskipTests=true
+
+Export App keys
+mvn -Pdst-sandbox apigee-config:exportAppKeys -Dapigee.config.exportDir=./dst-appkeys

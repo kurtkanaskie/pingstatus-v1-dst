@@ -1,7 +1,7 @@
 /* globals context */
 /* globals print */
-/* Check to see if client.cn is in list of client.cns from the KVM */
-/* Could also uses API Product to hold list of client.cns */
+/* Check to see if client.cn is in list of client.cns from the KVM populated in private.flow.client.cns */
+/* Could also use API Product to hold list of client.cns populated in verifyapikey.VA-header.apiproduct.custom.client.cns */
 
 var cnsList = context.getVariable("private.flow.client.cns");
 var cn = context.getVariable("client.cn");

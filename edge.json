@@ -3,6 +3,42 @@
     "apiConfig": {
     },
     "envConfig": {
+        "sandbox": {
+            "targetServers": [
+                {
+                    "name": "pingstatus-v1",
+                    "host": "financialservices-dev-sandbox.apigee.net",
+                    "isEnabled": true,
+                    "port": 443,
+                    "sSLInfo": {
+                        "ciphers": [],
+                        "clientAuthEnabled": "true",
+                        "enabled": "true",
+                        "ignoreValidationErrors": false,
+                        "keyAlias": "keystore-outbound-pingstatus-v1-sandbox",
+                        "keyStore": "ref://keystore-outbound-pingstatus-v1-sandbox-ref",
+                        "protocols": []
+                    }
+                }
+            ],
+            "caches": [],
+            "kvms": [
+                {
+                    "name": "pingstatus-v1",
+                    "encrypted": true,
+                    "entry": [
+                        {
+                            "name": "target.basepath",
+                            "value": "pingstatusmock/v1"
+                        },
+                        {
+                            "name": "client.cns",
+                            "value": "Kurt Developer Kanaskie,Arvind,Client1,Client2"
+                        }
+                    ]
+                }
+            ]
+        },
         "dev": {
             "targetServers": [
                 {
@@ -32,130 +68,8 @@
                             "value": "pingstatusmock/v1"
                         },
                         {
-                            "name": "logging.log",
-                            "value": "true"
-                        },
-                        {
-                            "name": "logging.level",
-                            "value": "DEBUG"
-                        }
-                    ]
-                }
-            ]
-        },
-        "sandbox": {
-            "targetServers": [
-                {
-                    "name": "pingstatus-v1",
-                    "host": "financialservices-dev-sandbox.apigee.net",
-                    "isEnabled": true,
-                    "port": 443,
-                    "sSLInfo": {
-                        "ciphers": [],
-                        "clientAuthEnabled": "true",
-                        "enabled": "true",
-                        "ignoreValidationErrors": false,
-                        "keyAlias": "keystore-outbound-pingstatus-v1-sandbox",
-                        "keyStore": "ref://keystore-outbound-pingstatus-v1-sandbox-ref",
-                        "protocols": []
-                    }
-                }
-            ],
-            "caches": [],
-            "kvms": [
-                {
-                    "name": "pingstatus-v1",
-                    "encrypted": true,
-                    "entry": [
-                        {
                             "name": "client.cns",
-                            "value": "Kurt Developer Kanaskie,Arvind"
-                        },
-                        {
-                            "name": "target.basepath",
-                            "value": "pingstatusmock/v1"
-                        },
-                        {
-                            "name": "logging.log",
-                            "value": "true"
-                        },
-                        {
-                            "name": "logging.level",
-                            "value": "DEBUG"
-                        }
-                    ]
-                }
-            ]
-        },
-        "test": {
-            "targetServers": [
-                {
-                    "name": "pingstatus-v1",
-                    "host": "apibaas-trial.apigee.net",
-                    "isEnabled": true,
-                    "port": 443,
-                    "sSLInfo": {
-                        "ciphers": [],
-                        "clientAuthEnabled": "false",
-                        "enabled": "true",
-                        "ignoreValidationErrors": false,
-                        "protocols": []
-                    }
-                }
-            ],
-            "caches": [],
-            "kvms": [
-                {
-                    "name": "pingstatus-v1",
-                    "entry": [
-                        {
-                            "name": "target.basepath",
-                            "value": "kurtkanaskie/sandbox"
-                        },
-                        {
-                            "name": "logging.log",
-                            "value": "true"
-                        },
-                        {
-                            "name": "logging.level",
-                            "value": "DEBUG"
-                        }
-                    ]
-                }
-            ]
-        },
-        "prod": {
-            "targetServers": [
-                {
-                    "name": "pingstatus-v1",
-                    "host": "apibaas-trial.apigee.net",
-                    "isEnabled": true,
-                    "port": 443,
-                    "sSLInfo": {
-                        "ciphers": [],
-                        "clientAuthEnabled": "false",
-                        "enabled": "true",
-                        "ignoreValidationErrors": false,
-                        "protocols": []
-                    }
-                }
-            ],
-            "caches": [],
-            "kvms": [
-                {
-                    "name": "pingstatus-v1",
-                    "entry": [
-                        {
-                            "name": "target.basepath",
-                            "value": "kurtkanaskie/sandbox"
-                        },
-                        {
-                            "name": "logging.log",
-                            "value": "true"
-                        },
-                        {
-                            "name": "logging.level",
-                            "value": "DEBUG"
+                            "value": "Kurt Developer Kanaskie,Arvind,Client1,Client2"
                         }
                     ]
                 }
@@ -164,36 +78,6 @@
     },
     "orgConfig": {
         "apiProducts": [
-            {
-                "name": "pingstatus-v1-product-dev",
-                "apiResources": [
-                    "/",
-                    "/**"
-                ],
-                "approvalType": "auto",
-                "attributes": [
-                    {
-                        "name": "access",
-                        "value": "public"
-                    },
-                    {
-                        "name": "description",
-                        "value": "Product to test pingstatus API for dev env"
-                    }
-                ],
-                "description": "Product to test pingstatus-v1 API in dev env",
-                "displayName": "pingstatus-v1-product-dev",
-                "environments": [
-                    "dev"
-                ],
-                "proxies": [
-                    "pingstatus-v1"
-                ],
-                "quota": "10000",
-                "quotaInterval": "1",
-                "quotaTimeUnit": "month",
-                "scopes": []
-            },
             {
                 "name": "pingstatus-v1-product-sandbox",
                 "apiResources": [
@@ -204,7 +88,7 @@
                 "attributes": [
                     {
                         "name": "custom.client.cns",
-                        "value": "Kurt Developer Kanaskie,Arvind"
+                        "value": "Kurt Developer Kanaskie,Arvind,Client1,Client2"
                     },
                     {
                         "name": "custom.description",
@@ -223,7 +107,37 @@
                 "quotaInterval": "1",
                 "quotaTimeUnit": "month",
                 "scopes": []
-            }          
+            },
+            {
+                "name": "pingstatus-v1-product-dev",
+                "apiResources": [
+                    "/",
+                    "/**"
+                ],
+                "approvalType": "auto",
+                "attributes": [
+                    {
+                        "name": "custom.client.cns",
+                        "value": "Kurt Developer Kanaskie,Arvind,Client1,Client2"
+                    },
+                    {
+                        "name": "custom.description",
+                        "value": "Product to test pingstatus API for dev env"
+                    }
+                ],
+                "description": "Product to test pingstatus-v1 API in dev env",
+                "displayName": "pingstatus-v1-product-dev",
+                "environments": [
+                    "dev"
+                ],
+                "proxies": [
+                    "pingstatus-v1"
+                ],
+                "quota": "10000",
+                "quotaInterval": "1",
+                "quotaTimeUnit": "month",
+                "scopes": []
+            }        
         ],
         "developers": [
             {
@@ -298,7 +212,7 @@ dac6Yiwn26BeG3LctQB5ZQR7d3aQ5Ko=
                             "value": "CN=Kurt Developer Kanaskie, O=Kurt, OU=Kurt APIs"
                         },
                         {
-                            "name": "X-Client-User",
+                            "name": "X-Client-CN",
                             "value": "Kurt Developer Kanaskie"
                         }
                     ]
@@ -345,8 +259,108 @@ Ex42MG+ufLNK36qI5QX5e38MoWDnU5IECZtd4zhiY35hLFuaXzv8iiErYkmQ5l2M
                             "value": "CN=Arvind, O=, OU=, "
                         },
                         {
-                            "name": "X-Client-User",
+                            "name": "X-Client-CN",
                             "value": "Arvind"
+                        }
+                    ]
+                },
+                {
+                    "name": "pingstatus-v1-app-sandbox-client1",
+                    "apiProducts": [ "pingstatus-v1-product-sandbox" ],
+                    "callbackUrl": "NA",
+                    "scopes": [],
+                    "attributes": [
+                        {
+                            "name": "custom.privacy",
+                            "value": "confidential"
+                        },
+                        {
+                            "name": "X-Client-Cert",
+                            "value": "-----BEGIN CERTIFICATE-----
+MIID6jCCAtICCQDHpFZ5L5ekXDANBgkqhkiG9w0BAQsFADCBvDELMAkGA1UEBhMC
+VVMxFTATBgNVBAgTDFBlbm5zeWx2YW5pYTERMA8GA1UEBxMITWFjdW5naWUxITAf
+BgNVBAoTGENsaWVudCAxIENBIE9yZ2FuaXphdGlvbjEmMCQGA1UECxMdQ2xpZW50
+IDEgQ0EgT3JnYW5pemF0aW9uIFVuaXQxEzARBgNVBAMTCkNsaWVudDEtQ0ExIzAh
+BgkqhkiG9w0BCQEWFGNsaWVudDEtQ0FAZ21haWwuY29tMB4XDTE3MTExNjE1MDU1
+NVoXDTE4MTExNjE1MDU1NVowgbAxCzAJBgNVBAYTAlVTMRUwEwYDVQQIEwxQZW5u
+c3lsdmFuaWExETAPBgNVBAcTCE1hY3VuZ2llMR4wHAYDVQQKExVDbGllbnQgMSBP
+cmdhbml6YXRpb24xIzAhBgNVBAsTGkNsaWVudCAxIE9yZ2FuaXphdGlvbiBVbml0
+MRAwDgYDVQQDEwdDbGllbnQxMSAwHgYJKoZIhvcNAQkBFhFjbGllbnQxQGdtYWls
+LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANS8BSzgw1ooCMOE
+0A/wxIZ1aUj1ahPP9Umlul95YY3EN4ASg/aT5ioc/LcZ01kPrd7V60xIFyCM9CjO
+yNsGdOC4cU77vpuwXTbbEVLGG5e1Sdv4LpdX3buXYEaHqyxWy/K0mdvh2WvWEXNo
+QuMi1cMiM/lpjxqsF5/EXUkDm7JAC4Ds5kp6gP3bZqTGNLfCVNRaP3BOv4qqVxSI
+Y5JAmatszECi8jyg0C9KcMKgv0r9yzgdpevMvl/2jhcLdSm7Ev8fAjEpmyASNCvW
+aGAPTw256OoSh5PvkfRaukHPmQTvdATWA6GxIFVxzgJqptZiBx0ebGOrE0gNjaMJ
+JYeJtD8CAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAchLOw4wxnrr3doc1ZMQMeP4q
+9EXXy9+qA09Q4XtrQyzkCM7U5Nb79Rmc3XnpNXF2IZLSSGqdwhKVrD+2c61HJ1Eo
+MDqE182bYFY4vDQHDi6SP9ixSunjKTi6+kqZyM2BfF75npHFw079yeTzGVBqFsTI
+lyG+UEcW0thdyRojGIlK7DIc5n3or8QJ0K1Yz3camHcg9mZn7mimImDKKNTGXJC8
+mufNEIe3XXpScocRVx4u1IHw5SqPc9ouRczPFLb7G4MrY5+vVndUAL1z2AlbFRzG
+y0N/ijfxA8Fy/jFj7ryqGN40hZ2+pmyiKizmpMIsErLbSr4p7eddb9wjJkplEQ==
+-----END CERTIFICATE-----"
+                        },
+                        {
+                            "name": "X-Client-Serial",
+                            "value": "00:96:f9:7b:b2:31:04:2f:2f"
+                        },
+                        {
+                            "name": "X-Client-DN",
+                            "value": "/C=US/ST=Pennsylvania/L=Macungie/O=Client 1 Organization/OU=Client 1 Organization Unit/CN=Client1/emailAddress=client1@gmail.com"
+                        },
+                        {
+                            "name": "X-Client-CN",
+                            "value": "Client1"
+                        }
+                    ]
+                },
+                {
+                    "name": "pingstatus-v1-app-sandbox-client2",
+                    "apiProducts": [ "pingstatus-v1-product-sandbox" ],
+                    "callbackUrl": "NA",
+                    "scopes": [],
+                    "attributes": [
+                        {
+                            "name": "custom.privacy",
+                            "value": "confidential"
+                        },
+                        {
+                            "name": "X-Client-Cert",
+                            "value": "-----BEGIN CERTIFICATE-----
+MIID6DCCAtACCQDXjSjLF8LKSDANBgkqhkiG9w0BAQsFADCBuzELMAkGA1UEBhMC
+VVMxETAPBgNVBAgTCE1pc3NvdXJpMRQwEgYDVQQHEwtLYW5zYXMgQ2l0eTEhMB8G
+A1UEChMYQ2xpZW50IDIgQ0EgT3JnYW5pemF0aW9uMSYwJAYDVQQLEx1DbGllbnQg
+MiBDQSBPcmdhbml6YXRpb24gVW5pdDETMBEGA1UEAxMKQ2xpZW50Mi1DQTEjMCEG
+CSqGSIb3DQEJARYUY2xpZW50Mi1DQUBnbWFpbC5jb20wHhcNMTcxMTE2MTUwMjM4
+WhcNMTkxMTE2MTUwMjM4WjCBrzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE1pc3Nv
+dXJpMRQwEgYDVQQHEwtLYW5zYXMgQ2l0eTEeMBwGA1UEChMVQ2xpZW50IDIgT3Jn
+YW5pemF0aW9uMSMwIQYDVQQLExpDbGllbnQgMiBPcmdhbml6YXRpb24gVW5pdDEQ
+MA4GA1UEAxMHQ2xpZW50MjEgMB4GCSqGSIb3DQEJARYRY2xpZW50MkBnbWFpbC5j
+b20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDy+ahTTI6XIT9yCW3V
+Uoew3FPMdq/qwVQWw3J6kbJ3V8WpOHgwoIbJ/tzjBMonOJaoQguaVgm7EO1Cq/n7
++oad2lGoG/SxxAQ3Rli47UK9uclLAU/URsWiS6rQAB0p18K7acdV5GF/dY+hc9eM
+0yfODRlAzoS2ZOknWe5XbsHkGsSS3ecmgCsuCD6FpdgJ+oHUfh0K7I6Ovweo4WQo
+/yEMjmGrKVU/Ls1ZtatVuor/kJDxqh31RedODsDEAzfW9T211ga4UnmTSqtmjRKR
+TK/nbir9s1Z3MC/aenyH8efB4LDd4JDgBPmUaKnWXg5xw6wrQhFaHgeX0efbhXWZ
+LTARAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAGsM6SUJinFo9+HQlKSfEubCUhrM
+xyyWehGchHVb29nYzRUicYw6T2aj9kWC4mmEObRh1frKAKm67DznLIWjMYy5r+f5
+hr1zAYhqGteLScarDsIdlneFo5s0WxxHBzft1FYJkiuJwTnhU0uBokHzcAeI/7q8
+QXgt+nbMZv1o2nGOw/FDgp/c/+AOhM8u94YUXsALQA/7lgsNK2gOIyCPEY7voyQv
+TfLs1k0Ze2oJQTggDCaqZ1st2n3xVlM8QGsk3ylN4yNqUDumYMkYXzULDvxScH4v
+4F6+gnj5fTafZP6znJ2CdxWzfBuYp5sKhF66ke/l77IaBf/zhfjb734rSpE=
+-----END CERTIFICATE-----"
+                        },
+                        {
+                            "name": "X-Client-Serial",
+                            "value": "00:ed:4b:f7:ca:4e:36:40:2c"
+                        },
+                        {
+                            "name": "X-Client-DN",
+                            "value": "/C=US/ST=Pennsylvania/L=Macungie/O=Client 2 Organization/OU=Client 2 Organization Unit/CN=Client2/emailAddress=client2@gmail.com"
+                        },
+                        {
+                            "name": "X-Client-CN",
+                            "value": "Client2"
                         }
                     ]
                 }

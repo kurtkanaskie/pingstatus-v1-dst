@@ -1,0 +1,257 @@
+[
+  {
+    "name": "pingstatus-v1-app-sandbox-arvind",
+    "credentials": [
+      {
+        "consumerKey": "5mFqP9xJ9nybAAtFG88c8i96etgov1p5",
+        "consumerSecret": "U0PEKYKIE4O2aG7v",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "EyLi2ZrDx4nAQYhVlYaPyVTFfTYbQY08",
+        "consumerSecret": "LEwgFIa07dfSYIEt",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "KPoltgxXwpQVJkdnxsljwzZRfvgBnrj2",
+        "consumerSecret": "BE5fvcEfoJ5uiZa5",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "bHGX19gdjVJr8uYX6tGMnlJGmP7KzuWv",
+        "consumerSecret": "1Ix4weGnMP6Klhlk",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "i4tGWHw3PYAdDgAvYIRdIDPJl17HRAEv",
+        "consumerSecret": "aeAjV9ZyhLX3kYag",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "uenWDUsoBFLq0urmHGKfY0K0ZlU2GoPs",
+        "consumerSecret": "gajWZ2aCDJdQMKfC",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pingstatus-v1-app-sandbox",
+    "credentials": [
+      {
+        "consumerKey": "NoDxk3eWKDJbZXOhQ9EGplZeUGPF5P9J",
+        "consumerSecret": "c9N4wsUqAeKGnAA1",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "pxjsLExvZHzMkqfH3GgGsJBl46bGG9mf",
+        "consumerSecret": "xXtK0nzeQv2lNrS8",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "uAm0hWWSUCCraUtvGDaGMhGB89JoqpPE",
+        "consumerSecret": "mivDC7ckkb09TS3J",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "ufMpiZDTbf4wMXYHSCyFJZabvu83nYUW",
+        "consumerSecret": "CVlGPdFIVThyJWs1",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pingstatus-v1-app-sandbox-kurt",
+    "credentials": [
+      {
+        "consumerKey": "Ovc1D0YWAjee0i2NSdaJcvax7bCPZRKy",
+        "consumerSecret": "NRzg2qQYLHvgPHxT",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "Resg4P7NtPmDu3XVYcnd9wOYvJqoGjvd",
+        "consumerSecret": "RZF6bNdfuuxmGGWy",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "mXP4hKRdcektGgbAcePd1ZzAq9yhc0Am",
+        "consumerSecret": "OWXEewyG9XfYHvFM",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "pF08vG4sA0Nf7l62ngryjTQI8klQ7tGv",
+        "consumerSecret": "EYMyFagvYtAVaSjA",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "tZABIoKeAGXsEKHveENkEVir6dTpg0Qy",
+        "consumerSecret": "ZGcMIArytxWkFcBV",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      },
+      {
+        "consumerKey": "xLqA2ZpsrrUydhKyRb1T75dm7cApwtJx",
+        "consumerSecret": "P5s0XWVY0a6g2veN",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pingstatus-v1-app-sandbox-client1",
+    "credentials": [
+      {
+        "consumerKey": "QfkeNEg0ovnMzvVIuv8vbkcKqooETtxn",
+        "consumerSecret": "Cp5ydb1Dh98SVRPK",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pingstatus-v1-app-sandbox-client2",
+    "credentials": [
+      {
+        "consumerKey": "joJ4UqmxKELgzjrUvhLL3iZ0qepXaebI",
+        "consumerSecret": "SpXVA3ixj9OnQImb",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-sandbox"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pingstatus-v1-app-dev",
+    "credentials": [
+      {
+        "consumerKey": "A4noNQmYcsn6ao9CeMLzLkHlCUt1aBWB",
+        "consumerSecret": "IXgtVAAXQUzRGRC8",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "AZblfoTyOmgHbU0Sl2viyEyfA2oLELf3",
+        "consumerSecret": "s91IJAgGsV7U0cfU",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "Dm7GgLlqqZS9g7YrIDyPOmc02J51osHq",
+        "consumerSecret": "BH4xyKaRexMeeBWZ",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "XzskbGMqQQTRM72qgpZwsPvyGgst2nh0",
+        "consumerSecret": "kteksVwM6B6sCEwO",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "bz2L7upArVt8TWnIdkqoUZzLLEeBfQvY",
+        "consumerSecret": "1rOPCCMEKI3cclN8",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "u0Dvr1nhRFll334xxkSA6dv5cXw0E4N7",
+        "consumerSecret": "ZdSq9IG2h2yyWXm3",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      },
+      {
+        "consumerKey": "zVFBHayU0EbrffhYYW6w1CkFgGoFTqjw",
+        "consumerSecret": "HroJoLIcHGiGJFRR",
+        "apiProducts": [
+          {
+            "apiproduct": "pingstatus-v1-product-dev"
+          }
+        ]
+      }
+    ]
+  }
+]

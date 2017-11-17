@@ -20,7 +20,7 @@
         "X-Client-Cert":"{response.header.X-Client-Cert}",
         "X-Client-Serial":"{response.header.X-Client-Serial}",
         "X-Client-DN":"{response.header.X-Client-DN}",
-        "X-Client-User":"{response.header.X-Client-User}"
+        "X-Client-CN":"{response.header.X-Client-CN}"
     },
     "backendMessage":{response.content}
 }

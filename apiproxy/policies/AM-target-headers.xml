@@ -7,7 +7,7 @@
             <Header name="X-Client-Cert">{verifyapikey.VA-header.X-Client-Cert}</Header>
             <Header name="X-Client-Serial">{verifyapikey.VA-header.X-Client-Serial}</Header>
             <Header name="X-Client-DN">{verifyapikey.VA-header.X-Client-DN}</Header>
-            <Header name="X-Client-User">{verifyapikey.VA-header.X-Client-User}</Header>
+            <Header name="X-Client-CN">{verifyapikey.VA-header.X-Client-CN}</Header>
         </Headers>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
