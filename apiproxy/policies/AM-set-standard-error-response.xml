@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-default-proxy-fault">
-    <DisplayName>AM-default-proxy-fault</DisplayName>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-standard-error-response">
+    <DisplayName>AM-set-standard-error-response</DisplayName>
     <Set>
         <Headers>
             <Header name="Content-Type">application/json</Header>
         </Headers>
         <Payload contentType="application/json">
 {
-	"code": "{flow.error.code}",
-	"message": "{flow.error.message}",
-	"info": "{flow.error.info}"
+    "code": "{flow.error.code}",
+    "message": "{flow.error.description}",
+    "info": "https://developer.company.com/errors#{flow.error.code}"
 }
 </Payload>
         <StatusCode>{flow.error.status}</StatusCode>

@@ -101,7 +101,8 @@
                     "sandbox"
                 ],
                 "proxies": [
-                    "pingstatus-v1"
+                    "pingstatus-v1",
+                    "pingstatus-kurtkanaskiev1"
                 ],
                 "quota": "10000",
                 "quotaInterval": "1",
